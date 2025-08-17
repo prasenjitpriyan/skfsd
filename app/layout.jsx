@@ -1,22 +1,19 @@
-import { Roboto } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import './globals.css';
 
-const roboto = Roboto({
-  weight: ['400', '500', '700'],
-  subsets: ['latin'],
-  variable: '--font-roboto',
-});
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'SOUTH KOLKATA FIRST SUB DIVISION',
-  description:
-    'Daily performance monitoring and supervision platform for all 40 post offices under South Kolkata First Sub Division.',
+  title: 'SKFSD - Financial Management System',
+  description: 'South Kolkata Financial Services Division Management System',
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${roboto.variable} antialiased`}>{children}</body>
+    <html lang="en">
+      <body className={inter.className}>
+        <div className="min-h-screen bg-gray-50">{children}</div>
+      </body>
     </html>
   );
 }
