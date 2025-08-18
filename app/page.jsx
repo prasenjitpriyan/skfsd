@@ -1,12 +1,16 @@
+import ModeToggleMotion from '@/components/ModeToggleMotion';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Building2 } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-8 bg-gradient-to-br from-blue-50 to-indigo-200 dark:from-gray-950 dark:to-gray-900">
+    <main className="relative flex min-h-screen flex-col items-center justify-center p-8 bg-gradient-to-br from-blue-50 to-indigo-200 dark:from-gray-950 dark:to-gray-900">
+      {/* Client-side animated toggle */}
+      <ModeToggleMotion />
+
       <div className="flex flex-col items-center gap-4">
-        <div className="bg-blue-100 dark:bg-blue-900 rounded-full p-4">
+        <div className="bg-blue-300 dark:bg-blue-900 rounded-full p-4">
           <Building2 className="h-10 w-10 text-blue-700 dark:text-blue-300" />
         </div>
         <h1 className="text-4xl font-extrabold tracking-tight text-center text-gray-900 dark:text-white">
