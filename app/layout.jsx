@@ -5,7 +5,7 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'SKFSD - Financial Management System',
+  title: 'SKFSD || FMS',
   description: 'South Kolkata Financial Services Division Management System',
 };
 

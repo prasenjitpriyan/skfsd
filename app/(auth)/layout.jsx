@@ -1,3 +1,8 @@
+export const metadata = {
+  title: 'SKFSD || LOGIN',
+  description: 'South Kolkata Financial Services Division Management System',
+};
+
 export default function AuthLayout({ children }) {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
