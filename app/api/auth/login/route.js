@@ -37,7 +37,7 @@ export async function POST(request) {
       },
     });
 
-    response.cookies.set('auth-token', token, {
+    response.cookies.set('token', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',

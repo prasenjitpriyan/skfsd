@@ -4,14 +4,14 @@ import { getSession } from '@/lib/auth';
 import { redirect } from 'next/navigation';
 
 export default async function DashboardLayout({ children }) {
-  const session = getSession(globalThis.cookies);
+  const session = await getSession(); // ✅ now async
 
   if (!session) redirect('/login'); // Not authenticated
 
-  // Admin access check
+  // Optional: Admin check (middleware should handle this already)
   if (
-    globalThis.location?.pathname.startsWith('/admin') &&
-    session.role !== 'admin'
+    session.role !== 'admin' &&
+    globalThis?.location?.pathname?.startsWith('/admin')
   ) {
     redirect('/dashboard');
   }
