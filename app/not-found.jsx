@@ -10,8 +10,8 @@ export default function NotFound() {
   const router = useRouter();
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-200 dark:from-gray-950 dark:to-gray-900 px-4">
-      <Card className="w-full bg-gradient-to-br from-blue-50 to-indigo-200 dark:from-gray-950 dark:to-gray-900 max-w-lg shadow-xl rounded-2xl">
+    <div className="min-h-screen flex items-center justify-center from-blue-50 to-indigo-200 dark:from-gray-950 dark:to-gray-900 transition-colors duration-300 px-4">
+      <Card className="w-full from-blue-50 to-indigo-200 dark:from-gray-950 dark:to-gray-900 transition-colors duration-300 max-w-lg shadow-xl rounded-2xl">
         <CardContent className="text-center p-8">
           {/* SVG Illustration */}
           <div className="mb-6 flex justify-center">
