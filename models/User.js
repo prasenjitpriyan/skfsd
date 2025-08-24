@@ -6,6 +6,8 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true,
       unique: true,
+      trim: true,
+      lowercase: true,
     },
     password: {
       type: String,
@@ -21,17 +23,26 @@ const UserSchema = new mongoose.Schema(
       required: function () {
         return this.role === 'office' || this.role === 'delivery';
       },
+      trim: true,
     },
     isFirstLogin: {
       type: Boolean,
       default: true,
     },
-    resetToken: String,
-    resetTokenExpiry: Date,
+    resetToken: {
+      type: String,
+      default: undefined,
+    },
+    resetTokenExpiry: {
+      type: Date,
+      default: undefined,
+    },
   },
   {
     timestamps: true,
   }
 );
+
+UserSchema.index({ email: 1 }, { unique: true });
 
 export default mongoose.models.User || mongoose.model('User', UserSchema);
