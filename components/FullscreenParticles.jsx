@@ -81,7 +81,7 @@ const FullscreenParticles = () => {
           color: isDark ? '#00FFDE' : '#475569',
           distance: 150,
           enable: true,
-          opacity: isDark ? 0.3 : 0.4,
+          opacity: isDark ? 0.4 : 0.4,
           width: 1,
         },
         move: {

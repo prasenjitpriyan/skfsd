@@ -1,24 +1,28 @@
 import { DashboardHeader } from '@/components/layout/dashboard-header';
 import { DashboardNav } from '@/components/layout/dashboard-nav';
-import { auth } from '@/lib/auth';
+import { getSession } from '@/lib/auth';
 import { redirect } from 'next/navigation';
 
 export default async function DashboardLayout({ children }) {
-  const session = await auth();
+  const session = getSession(globalThis.cookies);
 
-  if (!session) {
-    redirect('/login');
+  if (!session) redirect('/login'); // Not authenticated
+
+  // Admin access check
+  if (
+    globalThis.location?.pathname.startsWith('/admin') &&
+    session.role !== 'admin'
+  ) {
+    redirect('/dashboard');
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      <DashboardHeader user={session.user} />
-      <div className="flex">
-        <DashboardNav userRole={session.user.role} />
-        <main className="flex-1 p-6">
-          <div className="mx-auto max-w-7xl">{children}</div>
-        </main>
-      </div>
+    <div className="flex min-h-screen">
+      <DashboardNav />
+      <main className="flex-1">
+        <DashboardHeader user={session} />
+        {children}
+      </main>
     </div>
   );
 }
