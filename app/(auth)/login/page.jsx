@@ -56,7 +56,7 @@ export default function LoginPage() {
   };
 
   return (
-    <Card className="w-full max-w-md shadow-2xl rounded-2xl border-0">
+    <Card className="w-full bg-gradient-to-br from-blue-50 to-indigo-200 dark:from-gray-950 dark:to-gray-900 max-w-lg shadow-xl rounded-2xl">
       <CardHeader className="text-center space-y-2">
         <Logo />
         <CardTitle className="text-2xl font-bold">Welcome to SKFSD</CardTitle>
