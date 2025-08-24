@@ -1,6 +1,7 @@
+import Logo from '@/components/Logo';
 import ModeToggleMotion from '@/components/ModeToggleMotion';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Building2 } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Home() {
@@ -10,9 +11,7 @@ export default function Home() {
       <ModeToggleMotion />
 
       <div className="flex flex-col items-center gap-4">
-        <div className="bg-blue-300 dark:bg-blue-900 rounded-full p-4">
-          <Building2 className="h-10 w-10 text-blue-700 dark:text-blue-300" />
-        </div>
+        <Logo />
         <h1 className="text-4xl font-extrabold tracking-tight text-center text-gray-900 dark:text-white">
           SKFSD Financial Management Portal
         </h1>
