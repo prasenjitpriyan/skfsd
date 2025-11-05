@@ -34,7 +34,7 @@ export default function LoginPage() {
       className="flex items-center justify-center min-h-screen bg-linear-to-b from-red-50 to-yellow-50 font-[Fira_Sans]">
       <div className="login-card bg-white rounded-2xl shadow-2xl p-10 w-full max-w-md text-center border-t-4 border-[#FFD700]">
         <Link href={'/'} className="flex justify-center mb-6">
-          <Image src="IP.svg" alt="India Post Logo" width={150} height={60} />
+          <Image src="/IP.svg" alt="India Post Logo" width={150} height={60} />
         </Link>
 
         <h1 className="login-heading text-2xl font-semibold text-[#DA291C] mb-8">
