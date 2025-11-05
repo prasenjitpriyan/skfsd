@@ -1,5 +1,5 @@
 export const offices = [
-  'Ballygunge MDG',
+  'Ballygunge',
   'Ballygunge SC',
   'Ballygunge RS',
   'Bijoygargh',

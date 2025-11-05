@@ -33,9 +33,9 @@ export default function SignupPage() {
       ref={containerRef}
       className="flex items-center justify-center min-h-screen bg-linear-to-b from-yellow-50 to-red-50 font-[Fira_Sans]">
       <div className="signup-card bg-white rounded-2xl shadow-2xl p-10 w-full max-w-md text-center border-t-4 border-[#DA291C]">
-        <div className="flex justify-center mb-6">
+        <Link href={'/'} className="flex justify-center mb-6">
           <Image src="IP.svg" alt="India Post Logo" width={150} height={60} />
-        </div>
+        </Link>
         <h1 className="signup-heading text-2xl font-semibold text-[#DA291C] mb-8">
           Create an Account
         </h1>
