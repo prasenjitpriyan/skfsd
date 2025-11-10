@@ -1,7 +1,6 @@
 'use client';
 
 import { gsap } from 'gsap';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { HiOutlineMenuAlt3, HiOutlineX } from 'react-icons/hi';
@@ -64,14 +63,10 @@ export default function AdminDashboard() {
   }, [sidebarOpen]);
 
   return (
-    <div
-      ref={containerRef}
-      className="flex min-h-screen bg-linear-to-br from-yellow-50 to-red-50 font-[Fira_Sans]">
-      {/* 🔹 Sidebar */}
-      {/* 🔹 Sidebar */}
+    <div ref={containerRef} className="flex min-h-screen font-[Fira_Sans]">
       <aside
         ref={sidebarRef}
-        className={`fixed lg:static top-0 left-0 min-h-screen w-64 bg-[#DA291C] text-white flex flex-col p-6 space-y-8 shadow-xl z-50
+        className={`fixed lg:static top-0 left-0 min-h-screen w-64 bg-blue-bar text-white flex flex-col p-6 space-y-8 shadow-xl z-50
     ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
     lg:translate-x-0 lg:min-h-screen
     transition-transform duration-300 ease-in-out`}>
@@ -84,11 +79,9 @@ export default function AdminDashboard() {
         </button>
 
         {/* Logo */}
-        <div className="flex items-center justify-between gap-2 mt-8 mb-8">
-          <div className="bg-[#FFD700] h-20 w-20 rounded-full flex justify-center items-center">
-            <Image src="/IP.svg" alt="India Post" width={80} height={80} />
-          </div>
-          <h1 className="text-xl font-semibold leading-tight">Admin Panel</h1>
+        <div className="flex flex-col items-center justify-center border-b pb-4">
+          <h1 className="text-4xl leading-tight">SKFSD</h1>
+          <p>ADMIN</p>
         </div>
 
         {/* Navigation */}
@@ -100,10 +93,10 @@ export default function AdminDashboard() {
         </nav>
 
         {/* Logout */}
-        <div className="mt-auto border-t border-red-300 pt-4">
+        <div className="mt-auto border-t pt-4">
           <Link
             href="/login"
-            className="block text-center text-sm font-medium bg-[#FFD700] text-[#DA291C] rounded-lg py-2 hover:bg-white transition-all">
+            className="block text-center text-sm font-medium bg-green-line text-white rounded-lg py-2 hover:bg-white transition-all">
             Logout
           </Link>
         </div>
@@ -223,8 +216,8 @@ function SidebarLink({ label, href, active }) {
       href={href}
       className={`px-3 py-2 rounded-lg font-medium transition-all ${
         active
-          ? 'bg-[#FFD700] text-[#DA291C]'
-          : 'text-white hover:bg-red-700 hover:pl-4'
+          ? 'bg-green-line text-white'
+          : 'text-white hover:bg-green-line hover:pl-4'
       }`}>
       {label}
     </Link>

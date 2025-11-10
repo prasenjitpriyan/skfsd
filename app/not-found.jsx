@@ -31,21 +31,21 @@ export default function NotFound() {
   return (
     <main
       ref={containerRef}
-      className="flex items-center justify-center min-h-screen font-[Fira_Sans] transition-colors duration-300 relative z-0 text-center bg-linear-to-b from-red-50 via-yellow-50 to-red-50 overflow-hidden">
+      className="flex items-center justify-center min-h-screen font-[Fira_Sans] transition-colors duration-300 relative z-0 text-center overflow-hidden">
       <div className="flex flex-col items-center text-center gap-8">
         <div className="flex justify-center gap-6">
           <Eye />
           <Eye />
         </div>
         <div className="error-text">
-          <h1 className="text-4xl font-semibold text-red-700 capitalize">
+          <h1 className="text-4xl font-semibold text-red-po capitalize">
             Looks like you&apos;re lost
           </h1>
           <p className="mt-2 text-2xl font-light text-gray-700">404 error</p>
         </div>
         <Link
           href="/"
-          className="error-button border border-yellow-400 text-lg font-light px-6 py-3 rounded-xl capitalize shadow-[0_7px_0_-2px_#faca2e] hover:shadow-none hover:bg-yellow-400 hover:text-white transition-all duration-300">
+          className="error-button border border-minion-yellow text-lg font-light px-6 py-3 rounded-xl capitalize shadow-[0_7px_0_-2px_#faca2e] hover:shadow-none hover:bg-minion-yellow hover:text-red-po transition-all duration-300">
           back to home
         </Link>
       </div>

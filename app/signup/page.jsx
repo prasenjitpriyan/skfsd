@@ -31,12 +31,12 @@ export default function SignupPage() {
   return (
     <main
       ref={containerRef}
-      className="flex items-center justify-center min-h-screen bg-linear-to-b from-yellow-50 to-red-50 font-[Fira_Sans]">
-      <div className="signup-card bg-white rounded-2xl shadow-2xl p-10 w-full max-w-md text-center border-t-4 border-[#DA291C]">
+      className="flex items-center justify-center min-h-screen font-[Fira_Sans]">
+      <div className="signup-card bg-white rounded-2xl shadow-2xl p-10 w-full max-w-md text-center border-t-4 border-red-po">
         <Link href={'/'} className="flex justify-center mb-6">
           <Image src="IP.svg" alt="India Post Logo" width={150} height={60} />
         </Link>
-        <h1 className="signup-heading text-2xl font-semibold text-[#DA291C] mb-8">
+        <h1 className="signup-heading text-2xl font-semibold text-red-po mb-8">
           Create an Account
         </h1>
         <form className="space-y-5">
@@ -46,7 +46,7 @@ export default function SignupPage() {
             </label>
             <input
               type="text"
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-[#DA291C] focus:outline-none"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-po focus:outline-none"
               placeholder="Enter your name"
               required
             />
@@ -56,7 +56,7 @@ export default function SignupPage() {
               Office Name
             </label>
             <select
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 bg-white focus:ring-2 focus:ring-[#FFD700] focus:outline-none"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 bg-white focus:ring-2 focus:ring-yellow-po focus:outline-none"
               required
               defaultValue="">
               <option value="" disabled>
@@ -75,7 +75,7 @@ export default function SignupPage() {
             </label>
             <input
               type="email"
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-[#FFD700] focus:outline-none"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-yellow-po focus:outline-none"
               placeholder="you@example.com"
               required
             />
@@ -86,14 +86,14 @@ export default function SignupPage() {
             </label>
             <input
               type="password"
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-[#DA291C] focus:outline-none"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-po focus:outline-none"
               placeholder="••••••••"
               required
             />
           </div>
           <button
             type="submit"
-            className="w-full mt-4 bg-[#FFD700] text-black font-semibold py-2 rounded-lg shadow-[0_6px_0_0_#DA291C] hover:translate-y-0.5 hover:shadow-none transition-all duration-200">
+            className="w-full mt-4 bg-yellow-po text-black font-semibold py-2 rounded-lg shadow-[0_6px_0_0_#DA291C] hover:translate-y-0.5 hover:shadow-none transition-all duration-200">
             Sign Up
           </button>
         </form>
@@ -101,7 +101,7 @@ export default function SignupPage() {
           Already have an account?{' '}
           <Link
             href="/login"
-            className="text-[#DA291C] font-medium hover:underline">
+            className="text-red-po font-medium hover:underline">
             Login here
           </Link>
         </p>

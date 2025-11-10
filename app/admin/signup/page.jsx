@@ -11,7 +11,6 @@ export default function AdminSignup() {
   const [authorized, setAuthorized] = useState(false);
   const router = useRouter();
 
-  // Animate the card when authorized
   useEffect(() => {
     if (authorized) {
       gsap.to('.admin-card', {
@@ -23,30 +22,24 @@ export default function AdminSignup() {
     }
   }, [authorized]);
 
-  // Handle the secret key check
   const handleSecretSubmit = (e) => {
     e.preventDefault();
     if (secretKey === 'INDIAPOST_ADMIN_2025') {
       setAuthorized(true);
     } else {
-      alert('❌ Invalid secret key');
+      alert('Invalid secret key');
     }
   };
 
-  // Handle admin account creation
   const handleAdminSignup = (e) => {
     e.preventDefault();
-
-    // Normally, you’d save admin data to MongoDB here via an API call.
-    // For now, just simulate success:
-    alert('✅ Admin account created successfully!');
-    router.push('/admin/dashboard'); // Redirect after success
+    alert('Admin account created successfully!');
+    router.push('/admin/dashboard');
   };
 
   return (
-    <main className="flex items-center justify-center min-h-screen bg-linear-to-b from-red-50 to-yellow-50 font-[Fira_Sans]">
+    <main className="flex items-center justify-center min-h-screen font-[Fira_Sans]">
       {!authorized ? (
-        // STEP 1: SECRET KEY VALIDATION
         <form
           onSubmit={handleSecretSubmit}
           className="bg-white p-10 rounded-2xl shadow-2xl text-center border-t-4 border-[#DA291C]">
@@ -60,7 +53,6 @@ export default function AdminSignup() {
           <h1 className="text-2xl font-semibold text-[#DA291C] mb-4">
             Admin Access
           </h1>
-
           <input
             type="password"
             placeholder="Enter admin secret key"
@@ -69,16 +61,14 @@ export default function AdminSignup() {
             className="border border-gray-300 rounded-lg px-3 py-2 w-full mb-4 focus:ring-2 focus:ring-[#FFD700]"
             required
           />
-
           <button
             type="submit"
-            className="w-full bg-[#DA291C] text-white font-semibold py-2 rounded-lg shadow-[0_6px_0_0_#FFD700] hover:translate-y-0.5 hover:shadow-none transition-all duration-200">
+            className="w-full bg-red-po text-white font-semibold py-2 rounded-lg shadow-[0_6px_0_0_#FFD700] hover:translate-y-0.5 hover:shadow-none transition-all duration-200">
             Verify Key
           </button>
         </form>
       ) : (
-        // STEP 2: ADMIN ACCOUNT CREATION FORM
-        <div className="admin-card bg-white rounded-2xl shadow-2xl p-10 w-full max-w-md text-center border-t-4 border-[#FFD700]">
+        <div className="admin-card bg-white rounded-2xl shadow-2xl p-10 w-full max-w-md text-center border-t-4 border-yellow-po">
           <Link href={'/'} className="flex justify-center mb-6">
             <Image
               src="/IP.svg"
@@ -87,7 +77,7 @@ export default function AdminSignup() {
               height={60}
             />
           </Link>
-          <h1 className="text-2xl font-semibold text-[#DA291C] mb-8">
+          <h1 className="text-2xl font-semibold text-red-po mb-8">
             Create Admin Account
           </h1>
 
@@ -98,7 +88,7 @@ export default function AdminSignup() {
               </label>
               <input
                 type="text"
-                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-[#DA291C]"
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-po"
                 placeholder="Admin Name"
                 required
               />
@@ -110,7 +100,7 @@ export default function AdminSignup() {
               </label>
               <input
                 type="email"
-                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-[#FFD700]"
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-yellow-po"
                 placeholder="admin@example.com"
                 required
               />
@@ -122,7 +112,7 @@ export default function AdminSignup() {
               </label>
               <input
                 type="password"
-                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-[#DA291C]"
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-po"
                 placeholder="••••••••"
                 required
               />
@@ -130,7 +120,7 @@ export default function AdminSignup() {
 
             <button
               type="submit"
-              className="w-full bg-[#FFD700] text-black font-semibold py-2 rounded-lg shadow-[0_6px_0_0_#DA291C] hover:translate-y-0.5 hover:shadow-none transition-all duration-200">
+              className="w-full bg-yellow-po text-black font-semibold py-2 rounded-lg shadow-[0_6px_0_0_#DA291C] hover:translate-y-0.5 hover:shadow-none transition-all duration-200">
               Register Admin
             </button>
           </form>
@@ -139,7 +129,7 @@ export default function AdminSignup() {
             Already an admin?{' '}
             <Link
               href="/login"
-              className="text-[#DA291C] font-medium hover:underline">
+              className="text-red-po font-medium hover:underline">
               Login here
             </Link>
           </p>

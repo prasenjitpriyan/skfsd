@@ -40,11 +40,12 @@ export default function Page() {
 
     return () => ctx.revert();
   }, []);
+
   return (
     <main>
       <section
         ref={containerRef}
-        className="relative z-0 flex flex-col items-center justify-center text-center min-h-screen bg-linear-to-b from-red-50 to-yellow-50 overflow-hidden">
+        className="relative z-0 flex flex-col items-center justify-center text-center min-h-screen overflow-hidden">
         <div className="absolute inset-0 z-[-1] opacity-30">
           <svg
             className="w-full h-full object-cover post-svg"
@@ -53,14 +54,14 @@ export default function Page() {
             <path
               d="M0,200 Q200,100 400,200 T800,200"
               fill="none"
-              stroke="#DA291C"
+              stroke="#b01c16"
               strokeWidth="4"
             />
             <path
               d="M0,220 Q200,320 400,220 T800,220"
               fill="none"
-              stroke="#FFD700"
-              strokeWidth="2"
+              stroke="#feeb15"
+              strokeWidth="4"
             />
           </svg>
         </div>
@@ -73,7 +74,7 @@ export default function Page() {
             alt="India Post"
             className="mx-auto h-30 w-auto mb-6"
           />
-          <h1 className="hero-heading text-4xl font-bold text-red-700 mb-4 leading-snug">
+          <h1 className="hero-heading text-4xl font-bold text-red-po mb-4 leading-snug cap">
             Empowering Every Post Office with Data
           </h1>
           <p className="hero-subtext text-gray-700 text-lg mb-8">
@@ -83,13 +84,8 @@ export default function Page() {
           <div className="hero-buttons flex justify-center gap-6">
             <Link
               href="/login"
-              className="error-button border border-red-600 text-lg font-light px-6 py-3 rounded-xl capitalize shadow-[0_7px_0_-2px_#DA291C] hover:shadow-none hover:bg-red-600 hover:text-white transition-all duration-300">
-              Login
-            </Link>
-            <Link
-              href={'/signup'}
-              className="error-button border border-yellow-400 text-lg font-light px-6 py-3 rounded-xl capitalize shadow-[0_7px_0_-2px_#faca2e] hover:shadow-none hover:bg-yellow-400 hover:text-white transition-all duration-300">
-              Sign Up
+              className="error-button border border-red-po text-lg font-light px-6 py-3 rounded-xl capitalize shadow-[0_7px_0_-2px_#b01c16] hover:shadow-none hover:bg-red-po hover:text-yellow-po transition-all duration-300">
+              Get Started
             </Link>
           </div>
         </div>
