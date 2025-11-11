@@ -3,7 +3,7 @@ import { gsap } from 'gsap';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
-import { offices } from '../data/offices';
+import { allOffices } from '../data/offices';
 
 export default function SignupPage() {
   const containerRef = useRef(null);
@@ -62,9 +62,9 @@ export default function SignupPage() {
               <option value="" disabled>
                 Select your office
               </option>
-              {offices.map((office, idx) => (
-                <option key={idx} value={office}>
-                  {office}
+              {allOffices.map((office) => (
+                <option key={office.id} value={office.name}>
+                  {office.name}
                 </option>
               ))}
             </select>
