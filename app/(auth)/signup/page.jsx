@@ -3,7 +3,7 @@ import { gsap } from 'gsap';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
-import { allOffices } from '../data/offices';
+import { allOffices } from '../../data/offices';
 
 export default function SignupPage() {
   const containerRef = useRef(null);

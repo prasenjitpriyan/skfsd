@@ -31,7 +31,7 @@ export default function LoginPage() {
   return (
     <main
       ref={containerRef}
-      className="flex items-center justify-center min-h-screen font-[Fira_Sans]">
+      className="flex items-center justify-center min-h-screen font-[Fira_Sans] bg-gray-50">
       <div className="login-card bg-white rounded-2xl shadow-2xl p-10 w-full max-w-md text-center border-t-4 border-yellow-po">
         <Link href={'/'} className="flex justify-center mb-6">
           <Image src="/IP.svg" alt="India Post Logo" width={150} height={60} />
@@ -66,9 +66,18 @@ export default function LoginPage() {
             />
           </div>
 
+          {/* 🔗 Forgot password link */}
+          <div className="text-right">
+            <Link
+              href="/forgot-password"
+              className="text-sm text-red-po font-medium hover:underline">
+              Forgot password?
+            </Link>
+          </div>
+
           <button
             type="submit"
-            className="w-full mt-4 bg-red-po text-white font-semibold py-2 rounded-lg shadow-[0_6px_0_0_#FFD700] hover:translate-y-0.5 hover:shadow-none transition-all duration-200">
+            className="w-full mt-2 bg-red-po text-white font-semibold py-2 rounded-lg shadow-[0_6px_0_0_#FFD700] hover:translate-y-0.5 hover:shadow-none transition-all duration-200">
             Login
           </button>
         </form>
