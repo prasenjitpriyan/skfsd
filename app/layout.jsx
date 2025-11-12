@@ -12,17 +12,18 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: 'OPDMS - South Kolkata First Sub Division',
-  description: 'Office Performance & Delivery Management System',
+  title: 'SKFSD - OPDMS',
+  description:
+    'South Kolkata First Sub Division - Office Performance & Delivery Management System',
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`bg-gray-background ${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {children}
-      </body>
+      <head>
+        <link rel="icon" href="/favicon-skfsd.svg" type="image/svg+xml" />
+      </head>
+      <body className="antialiased">{children}</body>
     </html>
   );
 }

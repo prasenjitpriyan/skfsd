@@ -296,7 +296,7 @@ export default function Page() {
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold mb-4">Ready to Get Started?</h2>
           <p className="text-xl text-indigo-100 mb-8">
-            Join 40 offices already using OPDMS for daily performance tracking
+            Join 44 offices already using OPDMS for daily performance tracking
           </p>
           <Link
             href="/login"
@@ -352,6 +352,8 @@ export default function Page() {
                 Department of Posts
                 <br />
                 Kolkata, West Bengal
+                <br />
+                Email:aspos.southkolkata1@gmail.com
               </p>
             </div>
           </div>
