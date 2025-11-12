@@ -3,6 +3,7 @@
 import { gsap } from 'gsap';
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
+import Eye from './components/Eye';
 
 export default function NotFound() {
   const containerRef = useRef(null);
@@ -41,39 +42,16 @@ export default function NotFound() {
           <h1 className="text-4xl font-semibold text-red-po capitalize">
             Looks like you&apos;re lost
           </h1>
-          <p className="mt-2 text-2xl font-light text-gray-700">404 error</p>
+          <p className="mt-2 text-2xl font-light text-dark-charcoal">
+            404 error
+          </p>
         </div>
         <Link
           href="/"
-          className="error-button border border-minion-yellow text-lg font-light px-6 py-3 rounded-xl capitalize shadow-[0_7px_0_-2px_#faca2e] hover:shadow-none hover:bg-minion-yellow hover:text-red-po transition-all duration-300">
+          className="error-button border border-yellow-po text-lg font-light px-6 py-3 rounded-xl capitalize shadow-[0_7px_0_-2px_#faca2e] hover:shadow-none hover:bg-yellow-po hover:text-red-po transition-all duration-300">
           back to home
         </Link>
       </div>
     </main>
-  );
-}
-
-function Eye() {
-  return (
-    <div className="eye w-20 h-20 bg-yellow-400 rounded-full flex items-center justify-center shadow-lg">
-      <div className="w-8 h-8 bg-black rounded-full animate-[movePupil_2s_ease-in-out_infinite]" />
-      <style jsx>{`
-        @keyframes movePupil {
-          0%,
-          100% {
-            transform: translate(0, 0);
-          }
-          25% {
-            transform: translate(-10px, -10px);
-          }
-          50% {
-            transform: translate(10px, 10px);
-          }
-          75% {
-            transform: translate(-10px, 10px);
-          }
-        }
-      `}</style>
-    </div>
   );
 }
