@@ -92,19 +92,13 @@ export default function LoginPage() {
   };
 
   return (
-    <main ref={containerRef} className="flex h-screen overflow-hidden">
-      {/* ========================================
-          LEFT PANEL - BRANDING & FEATURES
-      ======================================== */}
+    <main ref={containerRef} className="flex min-h-screen overflow-hidden">
       <div className="brand-panel hidden lg:flex lg:w-1/2 xl:w-2/5 relative bg-linear-to-br from-indigo-900 via-indigo-800 to-purple-900 overflow-hidden">
-        {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="bg-circle absolute top-20 -left-20 w-96 h-96 bg-indigo-500 rounded-full opacity-20 blur-3xl" />
           <div className="bg-circle absolute bottom-20 -right-20 w-[500px] h-[500px] bg-purple-500 rounded-full opacity-20 blur-3xl" />
           <div className="bg-circle absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-blue-500 rounded-full opacity-10 blur-3xl" />
         </div>
-
-        {/* Grid Pattern */}
         <div
           className="absolute inset-0 opacity-5"
           style={{
@@ -113,10 +107,7 @@ export default function LoginPage() {
             backgroundSize: '30px 30px',
           }}
         />
-
-        {/* Content - Full Height with Flex */}
         <div className="relative z-10 flex flex-col justify-between p-8 lg:p-10 xl:p-12 w-full h-full">
-          {/* Top Section - Logo & Title */}
           <div className="login-logo shrink-0">
             <Link href="/" className="inline-block mb-6">
               <Image
@@ -137,8 +128,6 @@ export default function LoginPage() {
               South Kolkata First Sub Division
             </p>
           </div>
-
-          {/* Middle Section - Features (flex-grow to take available space) */}
           <div className="grow flex items-center py-8">
             <div className="space-y-4 w-full">
               <div className="feature-card glass rounded-xl p-4 border border-white/10 hover:bg-white/5 transition-all">
@@ -156,7 +145,6 @@ export default function LoginPage() {
                   </div>
                 </div>
               </div>
-
               <div className="feature-card glass rounded-xl p-4 border border-white/10 hover:bg-white/5 transition-all">
                 <div className="flex items-start gap-3">
                   <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center shrink-0">
@@ -172,7 +160,6 @@ export default function LoginPage() {
                   </div>
                 </div>
               </div>
-
               <div className="feature-card glass rounded-xl p-4 border border-white/10 hover:bg-white/5 transition-all">
                 <div className="flex items-start gap-3">
                   <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center shrink-0">
@@ -190,8 +177,6 @@ export default function LoginPage() {
               </div>
             </div>
           </div>
-
-          {/* Bottom Section - Stats */}
           <div className="shrink-0">
             <div className="grid grid-cols-3 gap-4">
               <div className="text-center">
@@ -216,21 +201,13 @@ export default function LoginPage() {
           </div>
         </div>
       </div>
-
-      {/* ========================================
-          RIGHT PANEL - LOGIN FORM
-      ======================================== */}
       <div className="form-panel w-full lg:w-1/2 xl:w-3/5 flex items-center justify-center bg-gray-50 p-6 lg:p-12 h-full overflow-y-auto">
-        {/* Mobile Logo */}
         <div className="lg:hidden absolute top-6 left-6 z-20">
           <Link href="/">
             <Image src="/skfsd-logo.svg" alt="SKFSD" width={60} height={60} />
           </Link>
         </div>
-
-        {/* Form Container - Centered */}
         <div className="w-full max-w-md my-auto">
-          {/* Mobile Title */}
           <div className="lg:hidden text-center mb-8 mt-20">
             <h1 className="text-2xl font-bold text-indigo-900 mb-2">
               OPDMS Login
@@ -239,26 +216,19 @@ export default function LoginPage() {
               South Kolkata First Sub Division
             </p>
           </div>
-
-          {/* Welcome Text */}
           <div className="form-element mb-8">
             <h2 className="text-3xl font-bold text-gray-900 mb-2">Sign In</h2>
             <p className="text-gray-600">
               Enter your credentials to access your dashboard
             </p>
           </div>
-
-          {/* Error Alert */}
           {error && (
             <div className="form-element alert alert-error mb-6 flex items-center gap-2">
               <AlertCircle className="w-5 h-5" />
               <span>{error}</span>
             </div>
           )}
-
-          {/* Login Form */}
           <form onSubmit={handleSubmit} className="space-y-5">
-            {/* Email Field */}
             <div className="form-element">
               <label className="block text-sm font-medium text-gray-700 mb-1.5">
                 Email Address
@@ -277,8 +247,6 @@ export default function LoginPage() {
                 />
               </div>
             </div>
-
-            {/* Password Field */}
             <div className="form-element">
               <label className="block text-sm font-medium text-gray-700 mb-1.5">
                 Password
@@ -307,8 +275,6 @@ export default function LoginPage() {
                 </button>
               </div>
             </div>
-
-            {/* Remember Me & Forgot Password */}
             <div className="form-element flex items-center justify-between text-sm">
               <label className="flex items-center gap-2 text-gray-700 cursor-pointer">
                 <input
@@ -325,8 +291,6 @@ export default function LoginPage() {
                 Forgot password?
               </Link>
             </div>
-
-            {/* Submit Button */}
             <div className="form-element">
               <button
                 type="submit"
@@ -336,15 +300,11 @@ export default function LoginPage() {
               </button>
             </div>
           </form>
-
-          {/* Divider */}
           <div className="form-element flex items-center gap-4 my-6">
             <div className="flex-1 h-px bg-gray-300" />
             <span className="text-gray-500 text-sm">OR</span>
             <div className="flex-1 h-px bg-gray-300" />
           </div>
-
-          {/* OAuth Button */}
           <div className="form-element">
             <button
               type="button"
@@ -370,8 +330,6 @@ export default function LoginPage() {
               Continue with Google
             </button>
           </div>
-
-          {/* Sign Up Link */}
           <div className="form-element text-center mt-6">
             <p className="text-gray-600 text-sm">
               Don&apos;t have an account?{' '}
@@ -382,8 +340,6 @@ export default function LoginPage() {
               </Link>
             </p>
           </div>
-
-          {/* Footer Links */}
           <div className="form-element mt-8 pt-6 border-t border-gray-200">
             <div className="flex flex-wrap justify-center gap-4 text-xs text-gray-500">
               <Link
