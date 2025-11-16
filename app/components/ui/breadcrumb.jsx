@@ -1,10 +1,9 @@
 'use client';
 
+import { cn } from '@/lib/utils';
 import { Slot } from '@radix-ui/react-slot';
 import { ChevronRight, MoreHorizontal } from 'lucide-react';
 import React from 'react';
-
-import { cn } from '@/lib/utils';
 
 const Breadcrumb = React.forwardRef(({ ...props }, ref) => (
   <nav ref={ref} aria-label="breadcrumb" {...props} />
@@ -15,7 +14,7 @@ const BreadcrumbList = React.forwardRef(({ className, ...props }, ref) => (
   <ol
     ref={ref}
     className={cn(
-      'flex flex-wrap items-center gap-1.5 wrap-break-word text-sm text-muted-foreground sm:gap-2.5',
+      'flex flex-wrap items-center gap-1.5 wrap-break-word text-sm text-gray-600 sm:gap-2.5',
       className
     )}
     {...props}
@@ -39,7 +38,10 @@ const BreadcrumbLink = React.forwardRef(
     return (
       <Comp
         ref={ref}
-        className={cn('transition-colors hover:text-foreground', className)}
+        className={cn(
+          'transition-colors hover:text-indigo-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 rounded-sm',
+          className
+        )}
         {...props}
       />
     );
@@ -53,7 +55,7 @@ const BreadcrumbPage = React.forwardRef(({ className, ...props }, ref) => (
     role="link"
     aria-disabled="true"
     aria-current="page"
-    className={cn('font-normal text-foreground', className)}
+    className={cn('font-medium text-gray-900', className)}
     {...props}
   />
 ));
@@ -63,7 +65,7 @@ const BreadcrumbSeparator = ({ children, className, ...props }) => (
   <li
     role="presentation"
     aria-hidden="true"
-    className={cn('[&>svg]:w-3.5 [&>svg]:h-3.5', className)}
+    className={cn('[&>svg]:w-3.5 [&>svg]:h-3.5 text-gray-400', className)}
     {...props}>
     {children ?? <ChevronRight />}
   </li>
@@ -74,7 +76,10 @@ const BreadcrumbEllipsis = ({ className, ...props }) => (
   <span
     role="presentation"
     aria-hidden="true"
-    className={cn('flex h-9 w-9 items-center justify-center', className)}
+    className={cn(
+      'flex h-9 w-9 items-center justify-center text-gray-500',
+      className
+    )}
     {...props}>
     <MoreHorizontal className="h-4 w-4" />
     <span className="sr-only">More</span>

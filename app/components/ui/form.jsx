@@ -20,9 +20,6 @@ const FormField = (props) => {
   );
 };
 
-// ----------------------------
-// FormItem Context
-// ----------------------------
 const FormItemContext = React.createContext({
   id: '',
 });
@@ -49,9 +46,6 @@ const useFormField = () => {
   };
 };
 
-// ----------------------------
-// Components
-// ----------------------------
 const FormItem = React.forwardRef(({ className, ...props }, ref) => {
   const id = React.useId();
 
@@ -70,7 +64,7 @@ const FormLabel = React.forwardRef(({ className, ...props }, ref) => {
     <Label
       ref={ref}
       htmlFor={formItemId}
-      className={cn(error && 'text-destructive', className)}
+      className={cn(error && 'text-red-600', className)}
       {...props}
     />
   );
@@ -102,7 +96,7 @@ const FormDescription = React.forwardRef(({ className, ...props }, ref) => {
     <p
       ref={ref}
       id={formDescriptionId}
-      className={cn('text-sm text-muted-foreground', className)}
+      className={cn('text-sm text-gray-600', className)}
       {...props}
     />
   );
@@ -120,7 +114,7 @@ const FormMessage = React.forwardRef(
       <p
         ref={ref}
         id={formMessageId}
-        className={cn('text-sm font-medium text-destructive', className)}
+        className={cn('text-sm font-medium text-red-600', className)}
         {...props}>
         {body}
       </p>

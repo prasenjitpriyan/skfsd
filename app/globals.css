@@ -1,11 +1,6 @@
 @import 'tailwindcss';
 
-/* ============================================
-   OPDMS - Tailwind v4 Configuration
-   ============================================ */
-
 @theme {
-  /* Custom Color Palette */
   --color-indigo-50: #eef2ff;
   --color-indigo-100: #e0e7ff;
   --color-indigo-200: #c7d2fe;
@@ -18,7 +13,6 @@
   --color-indigo-900: #312e81;
   --color-indigo-950: #1e1b4b;
 
-  /* Custom Spacing */
   --spacing-72: 18rem;
   --spacing-84: 21rem;
   --spacing-96: 24rem;
@@ -156,10 +150,6 @@ main {
   background: rgba(165, 180, 252, 0.6);
 }
 
-/* ============================================
-   Utility Classes
-   ============================================ */
-
 .bg-gradient-indigo {
   background: linear-gradient(to bottom, #312e81, #3730a3, #312e81);
 }
@@ -175,7 +165,6 @@ main {
   border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-/* Shimmer effect for loading states */
 .shimmer {
   background: linear-gradient(
     90deg,
@@ -197,11 +186,6 @@ main {
   animation: gradient-shift 5s ease infinite;
 }
 
-/* ============================================
-   Components
-   ============================================ */
-
-/* Sidebar Navigation */
 .nav-item {
   display: flex;
   align-items: center;
@@ -226,7 +210,6 @@ main {
   color: white;
 }
 
-/* Badge styles */
 .badge {
   display: inline-flex;
   align-items: center;
@@ -263,7 +246,6 @@ main {
   color: #1e40af;
 }
 
-/* Card styles */
 .card {
   background-color: white;
   border-radius: 0.75rem;
@@ -288,7 +270,6 @@ main {
   padding: 1rem 1.5rem;
 }
 
-/* Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -330,7 +311,6 @@ main {
   font-size: 1.125rem;
 }
 
-/* Inputs */
 .input,
 .select,
 .textarea {
@@ -349,7 +329,6 @@ main {
   outline: none;
 }
 
-/* Tables */
 .table {
   width: 100%;
   border-collapse: collapse;
@@ -362,7 +341,6 @@ main {
   font-size: 0.875rem;
 }
 
-/* Alerts */
 .alert {
   border-radius: 0.5rem;
   border: 1px solid transparent;
@@ -391,10 +369,6 @@ main {
   color: #1e40af;
 }
 
-/* ============================================
-   Responsive & Print
-   ============================================ */
-
 @media (max-width: 768px) {
   .sidebar-mobile {
     position: fixed;
@@ -420,10 +394,6 @@ main {
     print-color-adjust: exact;
   }
 }
-
-/* ============================================
-   Accessibility
-   ============================================ */
 
 :focus-visible {
   outline: 2px solid #6366f1;
