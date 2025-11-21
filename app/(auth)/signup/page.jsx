@@ -93,6 +93,7 @@ export default function SignupPage() {
     e.preventDefault();
     setError('');
     setSuccess('');
+
     if (
       !formData.name ||
       !formData.office ||
@@ -118,11 +119,34 @@ export default function SignupPage() {
       setError('Please accept the terms and conditions');
       return;
     }
-    console.log('Signup attempt:', formData);
-    setSuccess('Account created successfully! Redirecting to login...');
-    setTimeout(() => {
-      window.location.href = '/login';
-    }, 2000);
+
+    try {
+      const res = await fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          password: formData.password,
+          office: formData.office,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || 'Signup failed');
+      }
+
+      setSuccess('Account created successfully! Redirecting to login...');
+      setTimeout(() => {
+        window.location.href = '/login';
+      }, 2000);
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
   const handleChange = (e) => {

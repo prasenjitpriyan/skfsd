@@ -1,3 +1,6 @@
+import { connectDB } from '@/lib/db/connect';
+import { User } from '@/lib/db/models/User';
+import bcrypt from 'bcryptjs';
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
@@ -11,22 +14,44 @@ export const authOptions = {
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
-        // TODO: Replace with your actual authentication logic
-        // This is a placeholder - connect to your User model
-
-        if (
-          credentials?.email === 'admin@opdms.local' &&
-          credentials?.password === 'Admin@123'
-        ) {
+        try {
+          await connectDB();
+          const user = await User.findOne({
+            email: credentials?.email?.toLowerCase(),
+          });
+          if (!user) {
+            throw new Error('No user found with this email');
+          }
+          if (user.status !== 'active') {
+            throw new Error('Account is suspended. Contact admin.');
+          }
+          if (!user.passwordHash) {
+            throw new Error('Password not set. Please use password reset.');
+          }
+          const isValidPassword = await bcrypt.compare(
+            credentials?.password,
+            user.passwordHash
+          );
+          if (!isValidPassword) {
+            throw new Error('Invalid password');
+          }
+          await User.findByIdAndUpdate(user._id, {
+            lastLogin: new Date(),
+          });
           return {
-            id: '1',
-            name: 'System Admin',
-            email: 'admin@opdms.local',
-            roles: ['Admin'],
+            id: user._id.toString(),
+            email: user.email,
+            name: user.name,
+            roles: user.roles,
+            officeIds: user.officeIds,
+            image: user.image,
+            mustChangePassword: user.mustChangePassword,
+            twoFactorEnabled: user.twoFactorEnabled,
           };
+        } catch (error) {
+          console.error('Auth error:', error);
+          throw new Error(error.message || 'Authentication failed');
         }
-
-        return null;
       },
     }),
     GoogleProvider({
@@ -36,39 +61,66 @@ export const authOptions = {
   ],
 
   callbacks: {
-    async jwt({ token, user }) {
+    async signIn({ user, account }) {
+      if (account?.provider === 'google') {
+        await connectDB();
+        let existingUser = await User.findOne({ email: user.email });
+
+        if (!existingUser) {
+          // Create placeholder user
+          existingUser = await User.create({
+            email: user.email,
+            name: user.name,
+            image: user.image,
+            roles: ['OfficeUser'],
+            status: 'pendingOffice', // 👈 Mark incomplete
+            officeIds: [], // 👈 Empty
+          });
+
+          user.id = existingUser._id.toString();
+          return '/choose-office'; // 👈 Redirect user to pick office
+        }
+      }
+      return true;
+    },
+
+    async jwt({ token, user, trigger, session }) {
       if (user) {
         token.id = user.id;
         token.roles = user.roles;
         token.officeIds = user.officeIds;
-        token.deliveryCenterIds = user.deliveryCenterIds;
+        token.mustChangePassword = user.mustChangePassword;
+        token.twoFactorEnabled = user.twoFactorEnabled;
+      }
+
+      if (trigger === 'update' && session) {
+        token = { ...token, ...session };
       }
       return token;
     },
 
     async session({ session, token }) {
-      if (session.user) {
+      if (token && session.user) {
         session.user.id = token.id;
         session.user.roles = token.roles;
         session.user.officeIds = token.officeIds;
-        session.user.deliveryCenterIds = token.deliveryCenterIds;
+        session.user.mustChangePassword = token.mustChangePassword;
+        session.user.twoFactorEnabled = token.twoFactorEnabled;
       }
       return session;
     },
   },
-
   pages: {
     signIn: '/login',
     error: '/login',
   },
-
   session: {
     strategy: 'jwt',
+    maxAge: 30 * 24 * 60 * 60,
   },
-
   secret: process.env.NEXTAUTH_SECRET,
+  debug: process.env.NODE_ENV === 'development',
 };
 
 const handler = NextAuth(authOptions);
-
 export { handler as GET, handler as POST };

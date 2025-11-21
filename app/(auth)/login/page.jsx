@@ -12,6 +12,7 @@ import {
   Mail,
   Shield,
 } from 'lucide-react';
+import { signIn } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
@@ -88,7 +89,23 @@ export default function LoginPage() {
       return;
     }
 
-    console.log('Login attempt:', { email, password, rememberMe });
+    try {
+      const res = await signIn('credentials', {
+        email,
+        password,
+        redirect: false,
+      });
+
+      if (res?.error) {
+        setError('Invalid email or password');
+      } else {
+        // Redirect to dashboard
+        window.location.href = '/dashboard';
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      setError('An unexpected error occurred');
+    }
   };
 
   return (
@@ -308,6 +325,7 @@ export default function LoginPage() {
           <div className="form-element">
             <button
               type="button"
+              onClick={() => signIn('google', { callbackUrl: '/dashboard' })}
               className="btn btn-outline w-full border-gray-300 text-gray-700 hover:bg-gray-50">
               <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
                 <path
