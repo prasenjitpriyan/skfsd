@@ -15,15 +15,18 @@ import {
 } from 'lucide-react';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 export default function DashboardPage() {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
+  const router = useRouter();
   const [stats, setStats] = useState(null);
   const [recentActivity, setRecentActivity] = useState([]);
   const [pendingDRM, setPendingDRM] = useState([]);
   const [timeRemaining, setTimeRemaining] = useState('');
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetchDashboardData();
@@ -86,12 +89,21 @@ export default function DashboardPage() {
   };
 
   // Check user roles
-  const isAdmin = session?.user?.roles?.includes('Admin');
+  const isAdmin = session?.user?.roles?.some(
+    (r) => r && r.toLowerCase() === 'admin'
+  );
   const isOfficeUser = session?.user?.roles?.includes('OfficeUser');
   const isDeliveryCenterUser =
     session?.user?.roles?.includes('DeliveryCenterUser');
   const isSupervisor = session?.user?.roles?.includes('Supervisor');
   const isAuditAdmin = session?.user?.roles?.includes('AuditAdmin');
+
+  // Admin redirect effect
+  useEffect(() => {
+    if (status === 'authenticated' && isAdmin) {
+      router.push('/admin');
+    }
+  }, [status, isAdmin, router]);
 
   if (loading) {
     return (
