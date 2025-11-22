@@ -4,19 +4,26 @@ import {
   AlertCircle,
   ArrowRight,
   BarChart3,
-  Bell,
-  Building2,
   Calendar,
   CheckCircle,
   Clock,
   FileText,
-  TrendingUp,
+  IndianRupee,
   Users,
 } from 'lucide-react';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { Overview } from '../../components/dashboard/overview';
+import { RecentSales } from '../../components/dashboard/recent-sales';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '../../components/ui/card';
 
 export default function DashboardPage() {
   const { data: session, status } = useSession();
@@ -170,25 +177,22 @@ export default function DashboardPage() {
       {/* Quick Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {/* Today's Achievement */}
-        <div className="card hover:shadow-indigo transition-all">
-          <div className="card-body">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">Today&apos;s Collection</p>
-                <h3 className="text-2xl font-bold text-gray-900 mt-1">
-                  ₹{stats?.todayCollection?.toLocaleString('en-IN') || '0'}
-                </h3>
-                <p className="text-xs text-green-600 mt-1 flex items-center gap-1">
-                  <TrendingUp className="w-3 h-3" />
-                  +12% from yesterday
-                </p>
-              </div>
-              <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                <TrendingUp className="w-6 h-6 text-green-600" />
-              </div>
+        <Card className="hover:shadow-indigo transition-all">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">
+              Total Revenue
+            </CardTitle>
+            <IndianRupee className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-foreground">
+              ₹{stats?.totalRevenue?.toLocaleString() || '0'}
             </div>
-          </div>
-        </div>
+            <p className="text-xs text-muted-foreground">
+              +20.1% from last month
+            </p>
+          </CardContent>
+        </Card>
 
         {/* Target Achievement */}
         <div className="card hover:shadow-indigo transition-all">
@@ -236,25 +240,22 @@ export default function DashboardPage() {
         </div>
 
         {/* Active Offices */}
-        <div className="card hover:shadow-indigo transition-all">
-          <div className="card-body">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">Active Offices</p>
-                <h3 className="text-2xl font-bold text-gray-900 mt-1">
-                  {stats?.activeOffices || 40}/40
-                </h3>
-                <p className="text-xs text-blue-600 mt-1 flex items-center gap-1">
-                  <CheckCircle className="w-3 h-3" />
-                  All operational
-                </p>
-              </div>
-              <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                <Building2 className="w-6 h-6 text-blue-600" />
-              </div>
+        <Card className="hover:shadow-indigo transition-all">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">
+              Active Users
+            </CardTitle>
+            <Users className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-foreground">
+              {stats?.activeUsers || '0'}
             </div>
-          </div>
-        </div>
+            <p className="text-xs text-muted-foreground">
+              +180.1% from last month
+            </p>
+          </CardContent>
+        </Card>
       </div>
 
       {/* Main Content Grid */}
@@ -336,54 +337,17 @@ export default function DashboardPage() {
           </div>
 
           {/* Recent Activity */}
-          <div className="card">
-            <div className="card-header border-b flex items-center justify-between">
-              <h2 className="text-lg font-bold text-gray-900">
-                Recent Activity
-              </h2>
-              <Link
-                href="/reports"
-                className="text-sm text-indigo-600 hover:text-indigo-700">
-                View All
-              </Link>
-            </div>
-            <div className="card-body">
-              <div className="space-y-4">
-                {recentActivity.length > 0 ? (
-                  recentActivity.map((activity, index) => (
-                    <div
-                      key={index}
-                      className="flex items-start gap-3 pb-4 border-b last:border-0">
-                      <div
-                        className={`w-2 h-2 rounded-full mt-2 ${
-                          activity.type === 'success'
-                            ? 'bg-green-500'
-                            : activity.type === 'warning'
-                            ? 'bg-orange-500'
-                            : 'bg-blue-500'
-                        }`}></div>
-                      <div className="flex-1">
-                        <p className="text-sm font-medium text-gray-900">
-                          {activity.title}
-                        </p>
-                        <p className="text-xs text-gray-600 mt-1">
-                          {activity.description}
-                        </p>
-                        <p className="text-xs text-gray-400 mt-1">
-                          {activity.time}
-                        </p>
-                      </div>
-                    </div>
-                  ))
-                ) : (
-                  <div className="text-center py-8 text-gray-500">
-                    <FileText className="w-12 h-12 mx-auto mb-3 opacity-30" />
-                    <p>No recent activity</p>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
+          <Card className="col-span-3">
+            <CardHeader>
+              <CardTitle className="text-foreground">Recent Activity</CardTitle>
+              <CardDescription className="text-muted-foreground">
+                You made 265 sales this month.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <RecentSales />
+            </CardContent>
+          </Card>
         </div>
 
         {/* Right Column - Pending Items & Notifications */}
@@ -443,33 +407,14 @@ export default function DashboardPage() {
           </div>
 
           {/* System Notifications */}
-          <div className="card">
-            <div className="card-header border-b flex items-center gap-2">
-              <Bell className="w-5 h-5 text-gray-600" />
-              <h2 className="text-lg font-bold text-gray-900">Notifications</h2>
-            </div>
-            <div className="card-body">
-              <div className="space-y-3">
-                <div className="alert alert-info">
-                  <p className="text-sm">
-                    System maintenance scheduled for Nov 20, 2025
-                  </p>
-                </div>
-                <div className="alert alert-warning">
-                  <p className="text-sm">
-                    Submit November DRM before Nov 30, 2025
-                  </p>
-                </div>
-                {isAdmin && (
-                  <div className="alert alert-error">
-                    <p className="text-sm">
-                      3 unlock requests pending approval
-                    </p>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-foreground">Overview</CardTitle>
+            </CardHeader>
+            <CardContent className="pl-2">
+              <Overview />
+            </CardContent>
+          </Card>
 
           {/* Admin Quick Stats (Admin only) */}
           {isAdmin && (
@@ -483,14 +428,20 @@ export default function DashboardPage() {
                       {stats?.totalUsers || 156}
                     </span>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm opacity-90">
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium text-muted-foreground">
                       Pending Approvals
-                    </span>
-                    <span className="font-bold">
-                      {stats?.pendingApprovals || 7}
-                    </span>
-                  </div>
+                    </CardTitle>
+                    <FileText className="h-4 w-4 text-muted-foreground" />
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold text-foreground">
+                      {stats?.pendingApprovals || '0'}
+                    </div>
+                    <p className="text-xs text-muted-foreground">
+                      +19% from last month
+                    </p>
+                  </CardContent>
                   <div className="flex items-center justify-between">
                     <span className="text-sm opacity-90">System Health</span>
                     <span className="badge badge-success text-xs">

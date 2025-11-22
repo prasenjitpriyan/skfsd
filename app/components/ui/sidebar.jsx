@@ -114,7 +114,7 @@ export function SidebarProvider({
             ...style,
           }}
           className={cn(
-            'group/sidebar-wrapper has-data-[variant=inset]:bg-gray-50 flex min-h-svh w-full',
+            'group/sidebar-wrapper has-data-[variant=inset]:bg-sidebar flex min-h-svh w-full',
             className
           )}
           {...props}>
@@ -140,7 +140,7 @@ export function Sidebar({
       <div
         data-slot="sidebar"
         className={cn(
-          'bg-indigo-900 text-white flex h-full w-(--sidebar-width) flex-col',
+          'bg-sidebar text-sidebar-foreground flex h-full w-(--sidebar-width) flex-col',
           className
         )}
         {...props}>
@@ -156,7 +156,7 @@ export function Sidebar({
           data-sidebar="sidebar"
           data-slot="sidebar"
           data-mobile="true"
-          className="bg-indigo-900 text-white w-(--sidebar-width) p-0 [&>button]:hidden"
+          className="bg-sidebar text-sidebar-foreground w-(--sidebar-width) p-0 [&>button]:hidden"
           style={{
             '--sidebar-width': SIDEBAR_WIDTH_MOBILE,
           }}
@@ -173,7 +173,7 @@ export function Sidebar({
 
   return (
     <div
-      className="group peer text-white hidden md:block"
+      className="group peer text-sidebar-foreground hidden md:block"
       data-state={state}
       data-collapsible={state === 'collapsed' ? collapsible : ''}
       data-variant={variant}
@@ -207,7 +207,7 @@ export function Sidebar({
         <div
           data-sidebar="sidebar"
           data-slot="sidebar-inner"
-          className="bg-indigo-900 flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-indigo-800 group-data-[variant=floating]:shadow-sm">
+          className="bg-sidebar flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:shadow-sm">
           {children}
         </div>
       </div>
@@ -347,7 +347,7 @@ export function SidebarGroupLabel({ className, asChild = false, ...props }) {
       data-slot="sidebar-group-label"
       data-sidebar="group-label"
       className={cn(
-        'text-indigo-300 ring-indigo-500 flex h-8 shrink-0 items-center rounded-md px-2 text-xs font-medium outline-hidden transition-[margin,opacity] duration-200 ease-linear',
+        'text-sidebar-foreground/70 ring-sidebar-ring flex h-8 shrink-0 items-center rounded-md px-2 text-xs font-medium outline-hidden transition-[margin,opacity] duration-200 ease-linear',
         'group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0',
         className
       )}
@@ -364,7 +364,7 @@ export function SidebarGroupAction({ className, asChild = false, ...props }) {
       data-slot="sidebar-group-action"
       data-sidebar="group-action"
       className={cn(
-        'text-indigo-200 ring-indigo-500 hover:bg-indigo-800 hover:text-white absolute top-3.5 right-3 flex aspect-square w-5 items-center justify-center rounded-md p-0 outline-hidden transition-colors',
+        'text-sidebar-foreground/70 ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground absolute top-3.5 right-3 flex aspect-square w-5 items-center justify-center rounded-md p-0 outline-hidden transition-colors',
         className
       )}
       {...props}
@@ -406,7 +406,7 @@ export function SidebarMenuItem({ className, ...props }) {
 }
 
 const sidebarMenuButtonVariants = cva(
-  'peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left text-sm outline-hidden ring-indigo-500 transition-all text-indigo-100 hover:bg-indigo-800 hover:text-white data-[active=true]:bg-indigo-800 data-[active=true]:text-white',
+  'peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left text-sm outline-hidden ring-sidebar-ring transition-all text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-foreground',
   {
     variants: {
       variant: {
@@ -517,7 +517,7 @@ export function SidebarMenuSub({ className, ...props }) {
       data-slot="sidebar-menu-sub"
       data-sidebar="menu-sub"
       className={cn(
-        'mx-3.5 flex flex-col gap-1 border-l border-indigo-800 px-2.5',
+        'mx-3.5 flex flex-col gap-1 border-l border-sidebar-border px-2.5',
         className
       )}
       {...props}
@@ -550,9 +550,9 @@ export function SidebarMenuSubButton({
       data-size={size}
       data-active={isActive}
       className={cn(
-        'flex h-7 items-center gap-2 rounded-md px-2 text-sm text-indigo-200 hover:bg-indigo-800 hover:text-white transition-colors',
+        'flex h-7 items-center gap-2 rounded-md px-2 text-sm text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-colors',
         size === 'sm' && 'text-xs',
-        isActive && 'bg-indigo-800 text-white',
+        isActive && 'bg-sidebar-accent text-sidebar-accent-foreground',
         className
       )}
       {...props}

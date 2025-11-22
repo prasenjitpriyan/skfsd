@@ -4,6 +4,7 @@ import {
   BarChart3,
   Bell,
   Calendar,
+  ChevronsUpDown,
   FileText,
   Home,
   LayoutDashboard,
@@ -16,6 +17,13 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { Button } from '../components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '../components/ui/dropdown-menu';
 import {
   Sidebar,
   SidebarContent,
@@ -251,21 +259,45 @@ export default function ProtectedLayout({ children }) {
           </SidebarMenu>
 
           {/* User Profile Card */}
-          <div className="mt-4 border-t border-indigo-800 pt-4">
-            <div className="flex items-center gap-3 px-2">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-indigo text-white font-semibold">
-                {session?.user?.name?.charAt(0) || 'U'}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <SidebarMenuButton>
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-indigo text-white font-semibold">
+                  {session?.user?.name?.charAt(0) || 'U'}
+                </div>
+                <div className="flex-1 overflow-hidden">
+                  <p className="text-sm font-medium text-white truncate">
+                    {session?.user?.name || 'User'}
+                  </p>
+                  <p className="text-xs text-indigo-200 truncate">
+                    {session?.user?.roles?.[0] || 'User'}
+                  </p>
+                </div>
+                <ChevronsUpDown className="ml-auto size-4 text-sidebar-foreground/50" />
+              </SidebarMenuButton>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg bg-popover text-popover-foreground shadow-lg border border-border pt-4">
+              <div className="flex items-center gap-3 px-2">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-indigo text-white font-semibold">
+                  {session?.user?.name?.charAt(0) || 'U'}
+                </div>
+                <div className="flex flex-col gap-0.5 leading-none">
+                  <span className="font-semibold text-sidebar-foreground">
+                    {session?.user?.name}
+                  </span>
+                  <span className="text-xs text-sidebar-foreground/70">
+                    {session?.user?.email}
+                  </span>
+                </div>
               </div>
-              <div className="flex-1 overflow-hidden">
-                <p className="text-sm font-medium text-white truncate">
-                  {session?.user?.name || 'User'}
-                </p>
-                <p className="text-xs text-indigo-200 truncate">
-                  {session?.user?.roles?.[0] || 'User'}
-                </p>
-              </div>
-            </div>
-          </div>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem
+                onClick={() => signOut({ callbackUrl: '/login' })}>
+                <LogOut className="mr-2 h-4 w-4" />
+                <span>Sign Out</span>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </SidebarFooter>
 
         <SidebarRail />

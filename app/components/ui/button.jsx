@@ -8,16 +8,15 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default:
-          'bg-indigo-600 text-white border border-indigo-600 hover:bg-indigo-700 hover:border-indigo-700 hover:shadow-[0_4px_10px_rgba(99,102,241,0.2)] active:bg-indigo-800',
+        default: 'bg-primary text-primary-foreground hover:bg-primary/90',
         destructive:
-          'bg-red-600 text-white border border-red-600 hover:bg-red-700 hover:border-red-700 hover:shadow-[0_4px_10px_rgba(220,38,38,0.2)] active:bg-red-800',
+          'bg-destructive text-destructive-foreground hover:bg-destructive/90',
         outline:
-          'border-2 border-indigo-600 bg-transparent text-indigo-600 hover:bg-indigo-50 hover:text-indigo-700 active:bg-indigo-100',
+          'border border-input bg-background hover:bg-accent hover:text-accent-foreground',
         secondary:
-          'bg-gray-100 text-gray-900 border border-gray-200 hover:bg-gray-200 hover:border-gray-300 active:bg-gray-300',
-        ghost:
-          'border border-transparent hover:bg-indigo-50 hover:text-indigo-700 active:bg-indigo-100',
+          'bg-secondary text-secondary-foreground hover:bg-secondary/80',
+        ghost: 'hover:bg-accent hover:text-accent-foreground',
+        link: 'text-primary underline-offset-4 hover:underline',
         success:
           'bg-green-600 text-white border border-green-600 hover:bg-green-700 hover:border-green-700 hover:shadow-[0_4px_10px_rgba(22,163,74,0.2)] active:bg-green-800',
       },
