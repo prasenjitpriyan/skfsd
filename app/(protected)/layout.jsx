@@ -122,7 +122,7 @@ export default function ProtectedLayout({ children }) {
 
   return (
     <SidebarProvider defaultOpen={true}>
-      <Sidebar variant="inset" collapsible="icon">
+      <Sidebar variant="inset" collapsible="offcanvas">
         {/* Sidebar Header */}
         <SidebarHeader>
           <SidebarMenu>
@@ -251,16 +251,16 @@ export default function ProtectedLayout({ children }) {
           </SidebarMenu>
 
           {/* User Profile Card */}
-          <div className="mt-4 border-t border-gray-200 pt-4">
+          <div className="mt-4 border-t border-indigo-800 pt-4">
             <div className="flex items-center gap-3 px-2">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-indigo text-white font-semibold">
                 {session?.user?.name?.charAt(0) || 'U'}
               </div>
               <div className="flex-1 overflow-hidden">
-                <p className="text-sm font-medium text-gray-900 truncate">
+                <p className="text-sm font-medium text-white truncate">
                   {session?.user?.name || 'User'}
                 </p>
-                <p className="text-xs text-gray-600 truncate">
+                <p className="text-xs text-indigo-200 truncate">
                   {session?.user?.roles?.[0] || 'User'}
                 </p>
               </div>

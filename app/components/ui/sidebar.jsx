@@ -114,7 +114,7 @@ export function SidebarProvider({
             ...style,
           }}
           className={cn(
-            'group/sidebar-wrapper has-data-[variant=inset]:bg-white flex min-h-svh w-full',
+            'group/sidebar-wrapper has-data-[variant=inset]:bg-gray-50 flex min-h-svh w-full',
             className
           )}
           {...props}>
@@ -140,7 +140,7 @@ export function Sidebar({
       <div
         data-slot="sidebar"
         className={cn(
-          'bg-white text-gray-900 flex h-full w-(--sidebar-width) flex-col',
+          'bg-indigo-900 text-white flex h-full w-(--sidebar-width) flex-col',
           className
         )}
         {...props}>
@@ -156,7 +156,7 @@ export function Sidebar({
           data-sidebar="sidebar"
           data-slot="sidebar"
           data-mobile="true"
-          className="bg-white text-gray-900 w-(--sidebar-width) p-0 [&>button]:hidden"
+          className="bg-indigo-900 text-white w-(--sidebar-width) p-0 [&>button]:hidden"
           style={{
             '--sidebar-width': SIDEBAR_WIDTH_MOBILE,
           }}
@@ -173,7 +173,7 @@ export function Sidebar({
 
   return (
     <div
-      className="group peer text-gray-900 hidden md:block"
+      className="group peer text-white hidden md:block"
       data-state={state}
       data-collapsible={state === 'collapsed' ? collapsible : ''}
       data-variant={variant}
@@ -186,7 +186,7 @@ export function Sidebar({
           'group-data-[collapsible=offcanvas]:w-0',
           'group-data-[side=right]:rotate-180',
           variant === 'floating' || variant === 'inset'
-            ? 'group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+1rem)]'
+            ? 'group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon))]'
             : 'group-data-[collapsible=icon]:w-(--sidebar-width-icon)'
         )}
       />
@@ -199,7 +199,7 @@ export function Sidebar({
             ? 'left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]'
             : 'right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]',
           variant === 'floating' || variant === 'inset'
-            ? 'p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+1rem+2px)]'
+            ? 'p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+4px)]'
             : 'group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=left]:border-r group-data-[side=right]:border-l border-gray-200',
           className
         )}
@@ -207,7 +207,7 @@ export function Sidebar({
         <div
           data-sidebar="sidebar"
           data-slot="sidebar-inner"
-          className="bg-white flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-gray-200 group-data-[variant=floating]:shadow-sm">
+          className="bg-indigo-900 flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-indigo-800 group-data-[variant=floating]:shadow-sm">
           {children}
         </div>
       </div>
@@ -248,7 +248,7 @@ export function SidebarRail({ className, ...props }) {
       onClick={toggleSidebar}
       title="Toggle Sidebar"
       className={cn(
-        'hover:after:bg-gray-200 absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-all ease-linear group-data-[side=left]:-right-4 group-data-[side=right]:left-0 after:absolute after:inset-y-0 after:left-1/2 after:w-0.5 sm:flex',
+        'hover:after:bg-indigo-700 absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-all ease-linear group-data-[side=left]:-right-4 group-data-[side=right]:left-0 after:absolute after:inset-y-0 after:left-1/2 after:w-0.5 sm:flex',
         className
       )}
       {...props}
@@ -320,7 +320,7 @@ export function SidebarContent({ className, ...props }) {
       data-slot="sidebar-content"
       data-sidebar="content"
       className={cn(
-        'flex min-h-0 flex-1 flex-col gap-2 overflow-auto group-data-[collapsible=icon]:overflow-hidden',
+        'flex min-h-0 flex-1 flex-col gap-2 overflow-auto group-data-[collapsible=icon]:overflow-hidden [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]',
         className
       )}
       {...props}
@@ -347,7 +347,7 @@ export function SidebarGroupLabel({ className, asChild = false, ...props }) {
       data-slot="sidebar-group-label"
       data-sidebar="group-label"
       className={cn(
-        'text-gray-600 ring-indigo-500 flex h-8 shrink-0 items-center rounded-md px-2 text-xs font-medium outline-hidden transition-[margin,opacity] duration-200 ease-linear',
+        'text-indigo-300 ring-indigo-500 flex h-8 shrink-0 items-center rounded-md px-2 text-xs font-medium outline-hidden transition-[margin,opacity] duration-200 ease-linear',
         'group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0',
         className
       )}
@@ -364,7 +364,7 @@ export function SidebarGroupAction({ className, asChild = false, ...props }) {
       data-slot="sidebar-group-action"
       data-sidebar="group-action"
       className={cn(
-        'text-gray-700 ring-indigo-500 hover:bg-indigo-100 hover:text-indigo-900 absolute top-3.5 right-3 flex aspect-square w-5 items-center justify-center rounded-md p-0 outline-hidden transition-colors',
+        'text-indigo-200 ring-indigo-500 hover:bg-indigo-800 hover:text-white absolute top-3.5 right-3 flex aspect-square w-5 items-center justify-center rounded-md p-0 outline-hidden transition-colors',
         className
       )}
       {...props}
@@ -406,7 +406,7 @@ export function SidebarMenuItem({ className, ...props }) {
 }
 
 const sidebarMenuButtonVariants = cva(
-  'peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left text-sm outline-hidden ring-indigo-500 transition-all text-gray-700 hover:bg-indigo-100 hover:text-indigo-900 data-[active=true]:bg-indigo-100 data-[active=true]:text-indigo-900',
+  'peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left text-sm outline-hidden ring-indigo-500 transition-all text-indigo-100 hover:bg-indigo-800 hover:text-white data-[active=true]:bg-indigo-800 data-[active=true]:text-white',
   {
     variants: {
       variant: {
@@ -517,7 +517,7 @@ export function SidebarMenuSub({ className, ...props }) {
       data-slot="sidebar-menu-sub"
       data-sidebar="menu-sub"
       className={cn(
-        'mx-3.5 flex flex-col gap-1 border-l border-gray-200 px-2.5',
+        'mx-3.5 flex flex-col gap-1 border-l border-indigo-800 px-2.5',
         className
       )}
       {...props}
@@ -550,9 +550,9 @@ export function SidebarMenuSubButton({
       data-size={size}
       data-active={isActive}
       className={cn(
-        'flex h-7 items-center gap-2 rounded-md px-2 text-sm text-gray-700 hover:bg-indigo-100 hover:text-indigo-900 transition-colors',
+        'flex h-7 items-center gap-2 rounded-md px-2 text-sm text-indigo-200 hover:bg-indigo-800 hover:text-white transition-colors',
         size === 'sm' && 'text-xs',
-        isActive && 'bg-indigo-100 text-indigo-900',
+        isActive && 'bg-indigo-800 text-white',
         className
       )}
       {...props}
