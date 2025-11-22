@@ -74,7 +74,7 @@ export default function OfficesPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <Loader2 className="w-8 h-8 animate-spin text-indigo-600" />
+        <Loader2 className="w-8 h-8 animate-spin text-primary" />
       </div>
     );
   }
@@ -83,10 +83,10 @@ export default function OfficesPage() {
     <div className="space-y-6 p-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">
+          <h1 className="text-2xl font-bold text-foreground">
             Office Management
           </h1>
-          <p className="text-gray-600">
+          <p className="text-muted-foreground">
             Manage post offices and delivery centers
           </p>
         </div>
@@ -117,8 +117,8 @@ export default function OfficesPage() {
                   </td>
                   <td>
                     <div className="flex items-center gap-2">
-                      <Building2 className="w-4 h-4 text-gray-400" />
-                      <span className="font-medium text-gray-900">
+                      <Building2 className="w-4 h-4 text-muted-foreground" />
+                      <span className="font-medium text-foreground">
                         {office.name}
                       </span>
                     </div>
@@ -136,7 +136,7 @@ export default function OfficesPage() {
                     </span>
                   </td>
                   <td>
-                    <div className="flex items-center gap-1 text-sm text-gray-600">
+                    <div className="flex items-center gap-1 text-sm text-muted-foreground">
                       <MapPin className="w-3 h-3" />
                       {office.location || '-'}
                     </div>
@@ -161,7 +161,7 @@ export default function OfficesPage() {
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-lg shadow-xl w-full max-w-md">
             <div className="p-6 border-b">
-              <h2 className="text-xl font-bold text-gray-900">
+              <h2 className="text-xl font-bold text-foreground">
                 Add New Office
               </h2>
             </div>

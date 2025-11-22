@@ -35,8 +35,8 @@ export default async function MetricsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Daily Metrics</h1>
-          <p className="text-gray-600">
+          <h1 className="text-2xl font-bold text-foreground">Daily Metrics</h1>
+          <p className="text-muted-foreground">
             View and manage daily performance metrics
           </p>
         </div>
@@ -61,7 +61,9 @@ export default async function MetricsPage() {
             <tbody>
               {metrics.length === 0 ? (
                 <tr>
-                  <td colSpan="5" className="text-center py-8 text-gray-500">
+                  <td
+                    colSpan="5"
+                    className="text-center py-8 text-muted-foreground">
                     No metrics found. Click &quot;New Entry&quot; to get
                     started.
                   </td>
@@ -71,7 +73,7 @@ export default async function MetricsPage() {
                   <tr key={metric._id.toString()}>
                     <td>
                       <div className="flex items-center gap-2">
-                        <Calendar className="w-4 h-4 text-gray-400" />
+                        <Calendar className="w-4 h-4 text-muted-foreground" />
                         {new Date(metric.date).toLocaleDateString('en-IN', {
                           day: 'numeric',
                           month: 'short',
@@ -96,7 +98,9 @@ export default async function MetricsPage() {
                       </span>
                     </td>
                     <td>
-                      <span className="text-sm text-gray-600">User</span>
+                      <span className="text-sm text-muted-foreground">
+                        User
+                      </span>
                     </td>
                     <td>
                       <button className="btn btn-sm btn-ghost">View</button>

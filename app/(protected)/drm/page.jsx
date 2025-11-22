@@ -29,7 +29,7 @@ export default function DRMPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
-        <Loader2 className="w-8 h-8 animate-spin text-indigo-600" />
+        <Loader2 className="w-8 h-8 animate-spin text-primary" />
       </div>
     );
   }
@@ -38,8 +38,8 @@ export default function DRMPage() {
     <div className="space-y-6 p-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">DRM Management</h1>
-          <p className="text-gray-600">
+          <h1 className="text-2xl font-bold text-foreground">DRM Management</h1>
+          <p className="text-muted-foreground">
             Manage Delivery Revenue Management bills
           </p>
         </div>
@@ -65,12 +65,14 @@ export default function DRMPage() {
             <tbody>
               {entries.length === 0 ? (
                 <tr>
-                  <td colSpan="6" className="text-center py-12 text-gray-500">
+                  <td
+                    colSpan="6"
+                    className="text-center py-12 text-muted-foreground">
                     <FileText className="w-12 h-12 mx-auto mb-3 opacity-20" />
                     <p>No DRM entries found</p>
                     <Link
                       href="/drm/new"
-                      className="text-indigo-600 hover:underline mt-2 inline-block">
+                      className="text-primary hover:underline mt-2 inline-block">
                       Create your first bill
                     </Link>
                   </td>
@@ -80,7 +82,7 @@ export default function DRMPage() {
                   <tr key={entry._id}>
                     <td>
                       <div className="flex items-center gap-2">
-                        <Building2 className="w-4 h-4 text-gray-400" />
+                        <Building2 className="w-4 h-4 text-muted-foreground" />
                         <span className="font-medium">{entry.officeName}</span>
                       </div>
                     </td>
@@ -115,7 +117,7 @@ export default function DRMPage() {
                       </span>
                     </td>
                     <td>
-                      <span className="text-sm text-gray-600">
+                      <span className="text-sm text-muted-foreground">
                         {new Date(entry.createdAt).toLocaleDateString()}
                       </span>
                     </td>

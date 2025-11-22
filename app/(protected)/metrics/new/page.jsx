@@ -92,7 +92,7 @@ export default function NewMetricPage() {
   if (status === 'loading' || loading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
-        <Loader2 className="w-8 h-8 animate-spin text-indigo-600" />
+        <Loader2 className="w-8 h-8 animate-spin text-primary" />
       </div>
     );
   }
@@ -100,10 +100,10 @@ export default function NewMetricPage() {
   if (!office) {
     return (
       <div className="p-6 text-center">
-        <h2 className="text-xl font-semibold text-gray-900">
-          No Office Assigned
+        <h2 className="text-xl font-semibold text-foreground">
+          Metrics Submitted Successfully!
         </h2>
-        <p className="text-gray-600 mt-2">
+        <p className="text-muted-foreground mt-2">
           Please contact your administrator to assign an office to your account.
         </p>
       </div>
@@ -113,14 +113,14 @@ export default function NewMetricPage() {
   return (
     <div className="max-w-4xl mx-auto p-6">
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-gray-900">
+        <h1 className="text-2xl font-bold text-foreground">
           Submit Daily Metrics
         </h1>
-        <p className="text-gray-600">
+        <p className="text-muted-foreground">
           {office.name} ({office.type})
         </p>
         <div className="mt-4">
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-foreground mb-1">
             Date
           </label>
           <input

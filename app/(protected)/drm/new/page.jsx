@@ -126,7 +126,7 @@ export default function NewDRMPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
-        <Loader2 className="w-8 h-8 animate-spin text-indigo-600" />
+        <Loader2 className="w-8 h-8 animate-spin text-primary" />
       </div>
     );
   }
@@ -144,11 +144,11 @@ export default function NewDRMPage() {
       <div className="mb-6">
         <Link
           href="/drm"
-          className="text-sm text-gray-500 hover:text-indigo-600 flex items-center gap-1 mb-2">
-          <ArrowLeft className="w-4 h-4" /> Back to List
+          className="text-sm text-muted-foreground hover:text-primary flex items-center gap-1 mb-2">
+          <ArrowLeft className="w-4 h-4" /> Back to DRM List
         </Link>
-        <h1 className="text-2xl font-bold text-gray-900">Create DRM Bill</h1>
-        <p className="text-gray-600">
+        <h1 className="text-2xl font-bold text-foreground">Create DRM Bill</h1>
+        <p className="text-muted-foreground">
           {office.name} ({office.type})
         </p>
       </div>
@@ -250,7 +250,9 @@ export default function NewDRMPage() {
             <div>
               <label className="label">Rate (per Hour)</label>
               <div className="relative">
-                <span className="absolute left-3 top-2.5 text-gray-500">₹</span>
+                <span className="absolute left-3 top-2.5 text-muted-foreground">
+                  ₹
+                </span>
                 <input
                   type="number"
                   name="rate"
@@ -265,12 +267,14 @@ export default function NewDRMPage() {
             <div>
               <label className="label">Total Amount</label>
               <div className="relative">
-                <span className="absolute left-3 top-2.5 text-gray-500">₹</span>
+                <span className="absolute left-3 top-2.5 text-muted-foreground">
+                  ₹
+                </span>
                 <input
                   type="number"
                   value={formData.totalAmount}
                   readOnly
-                  className="input w-full pl-8 bg-gray-50 font-bold text-gray-900"
+                  className="input w-full pl-8 bg-muted font-bold text-foreground"
                 />
               </div>
             </div>

@@ -104,7 +104,7 @@ export default function TargetsPage() {
   if (loading && offices.length === 0) {
     return (
       <div className="flex items-center justify-center h-64">
-        <Loader2 className="w-8 h-8 animate-spin text-indigo-600" />
+        <Loader2 className="w-8 h-8 animate-spin text-primary" />
       </div>
     );
   }
@@ -113,13 +113,13 @@ export default function TargetsPage() {
     <div className="space-y-6 p-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">
+          <h1 className="text-2xl font-bold text-foreground">
             Target Management
           </h1>
-          <p className="text-gray-600">Set financial year targets</p>
+          <p className="text-muted-foreground">Set financial year targets</p>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-sm font-medium text-gray-700">FY:</span>
+          <span className="text-sm font-medium text-foreground">FY:</span>
           <select
             value={year}
             onChange={(e) => setYear(parseInt(e.target.value))}
@@ -148,7 +148,9 @@ export default function TargetsPage() {
                 <tr key={item._id}>
                   <td>
                     <div className="font-medium">{item.name}</div>
-                    <div className="text-xs text-gray-500">{item.id}</div>
+                    <div className="text-xs text-muted-foreground">
+                      {item.id}
+                    </div>
                   </td>
                   <td className="text-right font-mono">
                     ₹
@@ -170,7 +172,7 @@ export default function TargetsPage() {
                           ? handleEdit(item.target)
                           : handleNew(item.id)
                       }
-                      className="btn btn-sm btn-ghost text-indigo-600">
+                      className="btn btn-sm btn-ghost text-primary">
                       <Edit2 className="w-4 h-4" />
                     </button>
                   </td>
@@ -186,10 +188,8 @@ export default function TargetsPage() {
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-lg shadow-xl w-full max-w-md">
             <div className="p-6 border-b">
-              <h2 className="text-xl font-bold text-gray-900">
-                Set Targets ({editModal.officeId})
-              </h2>
-              <p className="text-sm text-gray-500">
+              <h2 className="text-xl font-bold text-foreground">Edit Target</h2>
+              <p className="text-sm text-muted-foreground">
                 Financial Year {year}-{year + 1}
               </p>
             </div>

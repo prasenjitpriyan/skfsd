@@ -16,6 +16,7 @@ import {
 import { Input } from '../../components/ui/input';
 import { Label } from '../../components/ui/label';
 import { Separator } from '../../components/ui/separator';
+import { Switch } from '../../components/ui/switch';
 import {
   Tabs,
   TabsContent,
@@ -38,8 +39,8 @@ export default function SettingsPage() {
   return (
     <div className="container mx-auto p-6 max-w-5xl space-y-8">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900">Settings</h1>
-        <p className="text-gray-500 mt-2">
+        <h1 className="text-3xl font-bold text-foreground">Settings</h1>
+        <p className="text-muted-foreground mt-2">
           Manage your account settings and preferences.
         </p>
       </div>
@@ -63,7 +64,7 @@ export default function SettingsPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center gap-4 mb-4">
-                <div className="h-20 w-20 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 text-2xl font-bold">
+                <div className="h-20 w-20 rounded-full bg-primary/10 flex items-center justify-center text-primary text-2xl font-bold">
                   {session?.user?.name?.charAt(0) || 'U'}
                 </div>
                 <div>
@@ -87,7 +88,7 @@ export default function SettingsPage() {
                     id="email"
                     defaultValue={session?.user?.email || ''}
                     disabled
-                    className="bg-gray-50"
+                    className="bg-muted"
                   />
                 </div>
                 <div className="space-y-2">
@@ -96,7 +97,7 @@ export default function SettingsPage() {
                     id="role"
                     defaultValue={session?.user?.roles?.[0] || 'User'}
                     disabled
-                    className="bg-gray-50"
+                    className="bg-muted"
                   />
                 </div>
                 <div className="space-y-2">
@@ -125,43 +126,32 @@ export default function SettingsPage() {
             <CardContent className="space-y-4">
               <div className="flex items-center justify-between space-x-2">
                 <div className="flex items-center space-x-2">
-                  <Bell className="h-5 w-5 text-gray-500" />
+                  <Bell className="h-5 w-5 text-muted-foreground" />
                   <Label
                     htmlFor="email-notifs"
                     className="flex flex-col space-y-1">
                     <span>Email Notifications</span>
-                    <span className="font-normal text-xs text-gray-500">
+                    <span className="font-normal text-xs text-muted-foreground">
                       Receive daily summaries and alerts via email.
                     </span>
                   </Label>
                 </div>
-                {/* Placeholder for Switch component if not available, using checkbox for now */}
-                <input
-                  type="checkbox"
-                  id="email-notifs"
-                  className="toggle toggle-primary"
-                  defaultChecked
-                />
+                <Switch id="email-notifs" defaultChecked />
               </div>
               <Separator />
               <div className="flex items-center justify-between space-x-2">
                 <div className="flex items-center space-x-2">
-                  <Bell className="h-5 w-5 text-gray-500" />
+                  <Bell className="h-5 w-5 text-muted-foreground" />
                   <Label
                     htmlFor="push-notifs"
                     className="flex flex-col space-y-1">
                     <span>Push Notifications</span>
-                    <span className="font-normal text-xs text-gray-500">
+                    <span className="font-normal text-xs text-muted-foreground">
                       Receive real-time alerts on your device.
                     </span>
                   </Label>
                 </div>
-                <input
-                  type="checkbox"
-                  id="push-notifs"
-                  className="toggle toggle-primary"
-                  defaultChecked
-                />
+                <Switch id="push-notifs" defaultChecked />
               </div>
             </CardContent>
             <CardFooter className="border-t px-6 py-4">
@@ -186,7 +176,7 @@ export default function SettingsPage() {
                 <Label>Theme</Label>
                 <div className="flex items-center gap-4">
                   <ThemeToggle />
-                  <span className="text-sm text-gray-500">
+                  <span className="text-sm text-muted-foreground">
                     Select your preferred theme (Light, Dark, or System).
                   </span>
                 </div>

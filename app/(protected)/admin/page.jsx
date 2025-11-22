@@ -40,7 +40,7 @@ export default function AdminDashboard() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <Loader2 className="w-8 h-8 animate-spin text-indigo-600" />
+        <Loader2 className="w-8 h-8 animate-spin text-primary" />
       </div>
     );
   }
@@ -48,8 +48,8 @@ export default function AdminDashboard() {
   return (
     <div className="space-y-6 p-6">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
-        <p className="text-gray-600">System overview and management</p>
+        <h1 className="text-2xl font-bold text-foreground">Admin Dashboard</h1>
+        <p className="text-muted-foreground">System overview and management</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -60,16 +60,18 @@ export default function AdminDashboard() {
           <div className="card-body">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Total Users</p>
-                <h3 className="text-2xl font-bold text-gray-900 mt-1">
+                <p className="text-sm font-medium text-muted-foreground">
+                  Total Users
+                </p>
+                <h3 className="text-2xl font-bold text-foreground mt-1">
                   {stats.users}
                 </h3>
               </div>
-              <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                <Users className="w-6 h-6 text-blue-600" />
+              <div className="w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center">
+                <Users className="w-6 h-6 text-blue-600 dark:text-blue-500" />
               </div>
             </div>
-            <div className="mt-4 text-sm text-blue-600 hover:underline">
+            <div className="mt-4 text-sm text-blue-600 dark:text-blue-500 hover:underline">
               Manage Users →
             </div>
           </div>
@@ -82,18 +84,18 @@ export default function AdminDashboard() {
           <div className="card-body">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">
+                <p className="text-sm font-medium text-muted-foreground">
                   Active Offices
                 </p>
-                <h3 className="text-2xl font-bold text-gray-900 mt-1">
+                <h3 className="text-2xl font-bold text-foreground mt-1">
                   {stats.offices}
                 </h3>
               </div>
-              <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                <Building2 className="w-6 h-6 text-green-600" />
+              <div className="w-12 h-12 bg-green-500/10 rounded-full flex items-center justify-center">
+                <Building2 className="w-6 h-6 text-green-600 dark:text-green-500" />
               </div>
             </div>
-            <div className="mt-4 text-sm text-green-600 hover:underline">
+            <div className="mt-4 text-sm text-green-600 dark:text-green-500 hover:underline">
               Manage Offices →
             </div>
           </div>
@@ -106,10 +108,10 @@ export default function AdminDashboard() {
           <div className="card-body">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">
+                <p className="text-sm font-medium text-muted-foreground">
                   Pending Approvals
                 </p>
-                <h3 className="text-2xl font-bold text-gray-900 mt-1">
+                <h3 className="text-2xl font-bold text-foreground mt-1">
                   {stats.pendingDRM}
                 </h3>
               </div>
