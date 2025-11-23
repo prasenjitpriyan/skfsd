@@ -22,7 +22,6 @@ export default function Page() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Hero animations
       gsap.from('.hero-logo', {
         scale: 0.8,
         opacity: 0,
@@ -68,7 +67,6 @@ export default function Page() {
         stagger: 0.1,
       });
 
-      // SVG path animation
       gsap.from('.post-svg path', {
         strokeDasharray: 1000,
         strokeDashoffset: 1000,

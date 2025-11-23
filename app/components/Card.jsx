@@ -37,8 +37,8 @@ export function FeatureCard({
           )}>
           <Icon className={cn('w-6 h-6 transition-colors', iconColor)} />
         </div>
-        <h3 className="text-xl font-bold text-gray-900 mb-2">{title}</h3>
-        <p className="text-gray-600">{description}</p>
+        <h3 className="text-xl font-bold text-gray-100 mb-2">{title}</h3>
+        <p className="text-gray-400">{description}</p>
       </CardBody>
     </div>
   );
@@ -52,7 +52,7 @@ export function StatsCard({ value, label, valueColor, className }) {
         className
       )}>
       <div className={cn('text-3xl font-bold', valueColor)}>{value}</div>
-      <div className="text-sm text-gray-600">{label}</div>
+      <div className="text-sm text-gray-400">{label}</div>
     </div>
   );
 }
