@@ -1,12 +1,21 @@
 'use client';
 
-import { Building2, Loader2, MapPin, Plus } from 'lucide-react';
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+} from '@/app/components/ui/sheet';
+import { Building2, Loader2, MapPin, Pencil } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 export default function OfficesPage() {
   const [offices, setOffices] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [showModal, setShowModal] = useState(false);
+  const [showEditSheet, setShowEditSheet] = useState(false);
+  const [selectedOffice, setSelectedOffice] = useState(null);
 
   // Form state
   const [formData, setFormData] = useState({
@@ -14,6 +23,7 @@ export default function OfficesPage() {
     name: '',
     type: 'Standard',
     location: '',
+    pin: '',
     deliveryCenterId: '',
   });
   const [submitting, setSubmitting] = useState(false);
@@ -36,32 +46,39 @@ export default function OfficesPage() {
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleEditClick = (office) => {
+    setSelectedOffice(office);
+    setFormData({
+      id: office.id,
+      name: office.name,
+      type: office.type,
+      location: office.location || '',
+      pin: office.pin || '',
+      deliveryCenterId: office.deliveryCenterId || '',
+    });
+    setShowEditSheet(true);
+  };
+
+  const handleUpdate = async (e) => {
     e.preventDefault();
     setSubmitting(true);
     try {
-      const res = await fetch('/api/admin/offices', {
-        method: 'POST',
+      // Use the custom ID in the URL as per the API implementation
+      const res = await fetch(`/api/admin/offices/${formData.id}`, {
+        method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
 
       if (res.ok) {
-        setShowModal(false);
-        setFormData({
-          id: '',
-          name: '',
-          type: 'Standard',
-          location: '',
-          deliveryCenterId: '',
-        });
+        setShowEditSheet(false);
         fetchOffices(); // Refresh list
       } else {
         const err = await res.json();
-        alert(err.error || 'Failed to create office');
+        alert(err.error || 'Failed to update office');
       }
     } catch (error) {
-      console.error('Create office error:', error);
+      console.error('Update office error:', error);
     } finally {
       setSubmitting(false);
     }
@@ -90,10 +107,6 @@ export default function OfficesPage() {
             Manage post offices and delivery centers
           </p>
         </div>
-        <button onClick={() => setShowModal(true)} className="btn btn-primary">
-          <Plus className="w-5 h-5 mr-2" />
-          Add Office
-        </button>
       </div>
 
       {/* Office List */}
@@ -107,13 +120,16 @@ export default function OfficesPage() {
                 <th>Type</th>
                 <th>Location</th>
                 <th>Status</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
               {offices.map((office) => (
                 <tr key={office._id}>
                   <td>
-                    <span className="font-mono text-sm">{office.id}</span>
+                    <span className="font-mono text-sm flex justify-center">
+                      {office.id}
+                    </span>
                   </td>
                   <td>
                     <div className="flex items-center gap-2">
@@ -139,6 +155,11 @@ export default function OfficesPage() {
                     <div className="flex items-center gap-1 text-sm text-muted-foreground">
                       <MapPin className="w-3 h-3" />
                       {office.location || '-'}
+                      {office.pin && (
+                        <span className="text-xs text-muted-foreground">
+                          ({office.pin})
+                        </span>
+                      )}
                     </div>
                   </td>
                   <td>
@@ -149,6 +170,14 @@ export default function OfficesPage() {
                       {office.active ? 'Active' : 'Inactive'}
                     </span>
                   </td>
+                  <td>
+                    <button
+                      onClick={() => handleEditClick(office)}
+                      className="p-2 hover:bg-accent rounded-md transition-colors text-muted-foreground hover:text-primary"
+                      title="Edit Office">
+                      <Pencil className="w-4 h-4" />
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -156,97 +185,116 @@ export default function OfficesPage() {
         </div>
       </div>
 
-      {/* Create Office Modal */}
-      {showModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-md">
-            <div className="p-6 border-b">
-              <h2 className="text-xl font-bold text-foreground">
-                Add New Office
-              </h2>
+      {/* Edit Office Sheet */}
+      <Sheet open={showEditSheet} onOpenChange={setShowEditSheet}>
+        <SheetContent className="overflow-y-auto">
+          <SheetHeader>
+            <SheetTitle>Edit Office</SheetTitle>
+            <SheetDescription>
+              Update office details and PIN code.
+            </SheetDescription>
+          </SheetHeader>
+          <form onSubmit={handleUpdate} className="space-y-4 mt-4">
+            <div>
+              <label className="block text-sm font-medium text-foreground mb-1">
+                Office ID
+              </label>
+              <input
+                type="text"
+                value={formData.id}
+                className="input w-full bg-muted"
+                disabled
+              />
             </div>
-            <form onSubmit={handleSubmit} className="p-6 space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-foreground mb-1">
+                Office Name
+              </label>
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                className="input w-full"
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-foreground mb-1">
+                Type
+              </label>
+              <select
+                name="type"
+                value={formData.type}
+                onChange={handleChange}
+                className="input w-full">
+                <option value="Standard">Standard Office</option>
+                <option value="Delivery">Delivery Center</option>
+                <option value="Admin">Admin Office</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-foreground mb-1">
+                Location
+              </label>
+              <input
+                type="text"
+                name="location"
+                value={formData.location}
+                onChange={handleChange}
+                className="input w-full"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-foreground mb-1">
+                PIN Code
+              </label>
+              <input
+                type="text"
+                name="pin"
+                value={formData.pin}
+                onChange={handleChange}
+                className="input w-full"
+                placeholder="e.g., 700001"
+              />
+            </div>
+            {formData.type === 'Standard' && (
               <div>
-                <label className="label">Office ID</label>
+                <label className="block text-sm font-medium text-foreground mb-1">
+                  Parent Delivery Center ID
+                </label>
                 <input
                   type="text"
-                  name="id"
-                  value={formData.id}
+                  name="deliveryCenterId"
+                  value={formData.deliveryCenterId}
                   onChange={handleChange}
                   className="input w-full"
-                  placeholder="e.g., std-1"
-                  required
+                  placeholder="Optional"
                 />
               </div>
-              <div>
-                <label className="label">Office Name</label>
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="input w-full"
-                  required
-                />
-              </div>
-              <div>
-                <label className="label">Type</label>
-                <select
-                  name="type"
-                  value={formData.type}
-                  onChange={handleChange}
-                  className="input w-full">
-                  <option value="Standard">Standard Office</option>
-                  <option value="Delivery">Delivery Center</option>
-                  <option value="Admin">Admin Office</option>
-                </select>
-              </div>
-              <div>
-                <label className="label">Location</label>
-                <input
-                  type="text"
-                  name="location"
-                  value={formData.location}
-                  onChange={handleChange}
-                  className="input w-full"
-                />
-              </div>
-              {formData.type === 'Standard' && (
-                <div>
-                  <label className="label">Parent Delivery Center ID</label>
-                  <input
-                    type="text"
-                    name="deliveryCenterId"
-                    value={formData.deliveryCenterId}
-                    onChange={handleChange}
-                    className="input w-full"
-                    placeholder="Optional"
-                  />
-                </div>
-              )}
+            )}
 
-              <div className="flex justify-end gap-3 mt-6">
-                <button
-                  type="button"
-                  onClick={() => setShowModal(false)}
-                  className="btn btn-ghost">
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="btn btn-primary">
-                  {submitting ? (
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                  ) : (
-                    'Create Office'
-                  )}
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
+            <SheetFooter className="pt-4">
+              <button
+                type="button"
+                onClick={() => setShowEditSheet(false)}
+                className="btn btn-ghost mr-2">
+                Cancel
+              </button>
+              <button
+                type="submit"
+                disabled={submitting}
+                className="btn btn-primary">
+                {submitting ? (
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                ) : (
+                  'Update Office'
+                )}
+              </button>
+            </SheetFooter>
+          </form>
+        </SheetContent>
+      </Sheet>
     </div>
   );
 }

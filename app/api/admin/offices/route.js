@@ -33,7 +33,7 @@ export async function POST(request) {
     }
 
     const body = await request.json();
-    const { id, name, type, location, deliveryCenterId } = body;
+    const { id, name, type, location, pin, deliveryCenterId } = body;
 
     if (!id || !name || !type) {
       return NextResponse.json(
@@ -58,6 +58,7 @@ export async function POST(request) {
       name,
       type,
       location,
+      pin,
       deliveryCenterId,
       active: true,
     });
