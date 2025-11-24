@@ -41,6 +41,7 @@ export async function POST(request) {
 
     const body = await request.json();
     const { officeId, year, targets } = body;
+    console.log('Received target update:', { officeId, year, targets });
 
     if (!officeId || !year || !targets) {
       return NextResponse.json(

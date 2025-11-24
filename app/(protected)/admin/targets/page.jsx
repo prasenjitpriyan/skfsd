@@ -10,8 +10,8 @@ export default function TargetsPage() {
   const [editModal, setEditModal] = useState({ show: false, officeId: null });
   const [formData, setFormData] = useState({
     booking: 0,
-    aadhaar: 0,
-    pli: 0,
+    posbOpening: 0,
+    posbNet: 0,
   });
   const [submitting, setSubmitting] = useState(false);
 
@@ -38,14 +38,14 @@ export default function TargetsPage() {
     setEditModal({ show: true, officeId: target.officeId });
     setFormData({
       booking: target.targets?.booking || 0,
-      aadhaar: target.targets?.aadhaar || 0,
-      pli: target.targets?.pli || 0,
+      posbOpening: target.targets?.posbOpening || 0,
+      posbNet: target.targets?.posbNet || 0,
     });
   };
 
   const handleNew = (officeId) => {
     setEditModal({ show: true, officeId });
-    setFormData({ booking: 0, aadhaar: 0, pli: 0 });
+    setFormData({ booking: 0, posbOpening: 0, posbNet: 0 });
   };
 
   const handleSubmit = async (e) => {
@@ -131,40 +131,51 @@ export default function TargetsPage() {
         </div>
       </div>
 
-      <div className="card overflow-hidden">
+      <div className="card shadow-md rounded-xl overflow-hidden">
         <div className="overflow-x-auto">
           <table className="table w-full">
             <thead>
               <tr>
-                <th>Office</th>
-                <th className="text-right">Booking Target</th>
-                <th className="text-right">Aadhaar Target</th>
-                <th className="text-right">PLI Target</th>
+                <th className="text-center">Office</th>
+                <th className="text-center">Booking Target</th>
+                <th className="text-center">POSB Opening Target</th>
+                <th className="text-center">Net POSB Target</th>
                 <th className="text-center">Actions</th>
               </tr>
             </thead>
+
             <tbody>
               {officeTargets.map((item) => (
-                <tr key={item._id}>
-                  <td>
+                <tr key={item._id} className="hover:bg-base-200/50 transition">
+                  {/* Office */}
+                  <td className="flex flex-col items-start pl-4 pb-4">
                     <div className="font-medium">{item.name}</div>
                     <div className="text-xs text-muted-foreground">
                       {item.id}
                     </div>
                   </td>
-                  <td className="text-right font-mono">
+
+                  {/* Booking Target */}
+                  <td className="text-center font-mono">
                     ₹
                     {item.target?.targets?.booking?.toLocaleString('en-IN') ||
                       '-'}
                   </td>
-                  <td className="text-right font-mono">
-                    ₹
-                    {item.target?.targets?.aadhaar?.toLocaleString('en-IN') ||
+
+                  {/* POSB Opening */}
+                  <td className="text-center font-mono">
+                    {item.target?.targets?.posbOpening?.toLocaleString(
+                      'en-IN'
+                    ) || '-'}
+                  </td>
+
+                  {/* POSB Net */}
+                  <td className="text-center font-mono">
+                    {item.target?.targets?.posbNet?.toLocaleString('en-IN') ||
                       '-'}
                   </td>
-                  <td className="text-right font-mono">
-                    ₹{item.target?.targets?.pli?.toLocaleString('en-IN') || '-'}
-                  </td>
+
+                  {/* Action */}
                   <td className="text-center">
                     <button
                       onClick={() =>
@@ -210,14 +221,14 @@ export default function TargetsPage() {
                 />
               </div>
               <div>
-                <label className="label">Aadhaar Target (₹)</label>
+                <label className="label">POSB Opening Target</label>
                 <input
                   type="number"
-                  value={formData.aadhaar}
+                  value={formData.posbOpening}
                   onChange={(e) =>
                     setFormData({
                       ...formData,
-                      aadhaar: parseInt(e.target.value),
+                      posbOpening: parseInt(e.target.value) || 0,
                     })
                   }
                   className="input w-full"
@@ -225,15 +236,17 @@ export default function TargetsPage() {
                 />
               </div>
               <div>
-                <label className="label">PLI Target (₹)</label>
+                <label className="label">Net POSB Target</label>
                 <input
                   type="number"
-                  value={formData.pli}
+                  value={formData.posbNet}
                   onChange={(e) =>
-                    setFormData({ ...formData, pli: parseInt(e.target.value) })
+                    setFormData({
+                      ...formData,
+                      posbNet: parseInt(e.target.value) || 0,
+                    })
                   }
                   className="input w-full"
-                  min="0"
                 />
               </div>
 

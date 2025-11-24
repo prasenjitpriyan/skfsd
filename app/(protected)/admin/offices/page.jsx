@@ -72,7 +72,7 @@ export default function OfficesPage() {
 
       if (res.ok) {
         setShowEditSheet(false);
-        fetchOffices(); // Refresh list
+        fetchOffices();
       } else {
         const err = await res.json();
         alert(err.error || 'Failed to update office');

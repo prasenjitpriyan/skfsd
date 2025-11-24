@@ -13,7 +13,13 @@ export async function GET(request) {
 
     await connectDB();
 
-    const offices = await Office.find({}).sort({ name: 1 }).lean();
+    const offices = await Office.find({
+      active: true,
+      id: { $not: /^del-/i },
+      name: { $not: /^del-/i },
+    })
+      .sort({ name: 1 })
+      .lean();
 
     return NextResponse.json({ offices });
   } catch (error) {
